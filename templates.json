@@ -3,18 +3,126 @@
   "templates": [
     {
       "type": 1,
+      "title": "BookStack",
+      "description": "BookStack is a simple, self-hosted, easy-to-use platform for organising and storing information.",
+      "categories": ["wiki"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/bookstack.png",
+      "image": "linuxserver/bookstack:latest",
+      "name": ["bookstack"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/bookstack/appdata/config",
+          "container": "/config"
+        }
+      ],
+      "env":[
+        {
+          "name": "DB_USER",
+          "label": "Database User",
+          "description": "The database user"
+        },
+        {
+          "name": "DB_PASS",
+          "label": "Database  Password",
+          "description": "The database password"
+        },
+        {
+          "name": "DB_HOST",
+          "label": "Database Host",
+          "description": "The database host"
+        },
+        {
+          "name": "DB_DATABASE",
+          "label": "Database Name",
+          "description": "The database to be used"
+        },
+        {
+          "name": "APP_URL",
+          "label": "Application URL",
+          "description": "The url your application will be accessed on (required for correct operation of reverse proxy)"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ] 
+    },
+    {
+      "type": 3,
+      "title": "Bookstack",
+      "description": "BookStack is a simple, self-hosted, easy-to-use platform for organising and storing information.",
+      "categories": ["Wiki"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/bookstack.png",
+      "note": "Default login is admin@admin.com with a password of password.",
+      "repository": {
+        "stackfile": "stacks/bookstack.yml",
+        "url": "https://github.com/marzel1/portainer-templates"
+      },
+      "env": [
+        {
+          "default": "1000",
+          "label": "PUID",
+          "name": "PUID"
+        },
+        {
+          "default": "1000",
+          "label": "PGID",
+          "name": "PGID"
+        },
+        {
+          "label": "TZ",
+          "name": "TZ"
+        },
+        {
+          "label": "DATABASE_NAME",
+          "name": "DATABASE_NAME"
+        },
+        {
+          "label": "DATABASE_USER",
+          "name": "DATABASE_USER"
+        },
+        {
+          "label": "DATABASE_PASSWORD",
+          "name": "DATABASE_PASSWORD"
+        },
+        {
+          "label": "MYSQL_ROOT_PASSWORD",
+          "name": "MYSQL_ROOT_PASSWORD"
+        },
+        {
+          "label": "PORT",
+          "name": "PORT"
+        }
+      ]
+    },
+    {
+      "type": 1,
       "title": "Nginx",
       "description": "High performance web server",
       "categories": ["webserver"],
       "platform": "linux",
-      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/nginx.png",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/nginx.png",
       "image": "nginx:latest",
       "ports": ["80/tcp", "443/tcp"],
       "volumes": [
         {
+          "bind": "/docker/nginx/appdata/config",
           "container": "/etc/nginx"
         },
         {
+          "bind": "/docker/nginx/appdata/data",
           "container": "/usr/share/nginx/html"
         }
       ]
