@@ -2,6 +2,39 @@
   "version": "2",
   "templates": [
     {
+      "type": 3,
+      "title": "Authelia",
+      "description": "BookStack is a simple, self-hosted, easy-to-use platform for organising and storing information.",
+      "categories": ["authentication"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/authelia.png",
+      "note": "Requires a configuration.yml file in order to work. Documentation is available <a href='https://docs.authelia.com/deployment/deployment-ha'>here</a>.",
+      "repository": {
+        "stackfile": "stacks/authelia.yml",
+        "url": "https://github.com/marzel1/portainer-templates"
+      },
+      "env": [
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]
+    },
+    {
       "type": 1,
       "title": "BookStack",
       "description": "BookStack is a simple, self-hosted, easy-to-use platform for organising and storing information.",
@@ -79,20 +112,6 @@
       },
       "env": [
         {
-          "default": "1000",
-          "label": "PUID",
-          "name": "PUID"
-        },
-        {
-          "default": "1000",
-          "label": "PGID",
-          "name": "PGID"
-        },
-        {
-          "label": "TZ",
-          "name": "TZ"
-        },
-        {
           "label": "DATABASE_NAME",
           "name": "DATABASE_NAME"
         },
@@ -115,6 +134,24 @@
         {
           "label": "BOOKSTACK_URL",
           "name": "BOOKSTACK_URL"
+        },
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
         }
       ]
     },
