@@ -174,7 +174,11 @@
       "volumes": [
         {
           "bind": "/docker/nginx/appdata/config",
-          "container": "/etc/nginx"
+          "container": "/config"
+        },
+        {
+          "bind": "/docker/nginx/appdata/data",
+          "container": "/usr/share/nginx/html"
         }
       ],
       "env":[
