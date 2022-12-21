@@ -201,6 +201,71 @@
           "default": "1000"
         }
       ]
+    },
+    {
+      "type": 1,
+      "title": "phpMyAdmin",
+      "description": "A web interface for MySQL and MariaDB.",
+      "categories": ["database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/phpmyadmin.png",
+      "image": "linuxserver/phpmyadmin:latest",
+      "name": ["phpmyadmin"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/phpmyadmin/appdata/config",
+          "container": "/config"
+        }
+      ],
+      "env": [
+        {
+          "name": "PMA_ARBITRARY",
+          "label": "Server Connections",
+          "description": "Allowed Server connections (One Server or Any Server).",
+          "select": [
+            {
+              "text": "Any Server",
+              "value": "1"
+            },
+            {
+              "text": "One Server",
+              "value": "0",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "PMA_HOST",
+          "label": "MySQL Host",
+          "description": "IP Address of the MySQL/MariaDB Server"
+        },
+        {
+          "name": "PMA_PORT",
+          "label": "MySQL Port",
+          "description": "Port of the MySQL/MariaDB Server",
+          "default": "3306"
+        },
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]
     }
   ]
 }
