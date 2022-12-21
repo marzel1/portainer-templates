@@ -8,6 +8,7 @@
       "categories": ["wiki"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/bookstack.png",
+      "note": "Default login is admin@admin.com with a password of password.",
       "image": "linuxserver/bookstack:latest",
       "name": ["bookstack"],
       "ports": ["80/tcp"],
@@ -43,6 +44,12 @@
           "name": "APP_URL",
           "label": "Application URL",
           "description": "The url your application will be accessed on (required for correct operation of reverse proxy)"
+        },
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
         },
         {
           "name": "PUID",
@@ -113,12 +120,56 @@
     },
     {
       "type": 1,
+      "title": "MariaDB",
+      "description": "An Enhanced drop in replacement for Mysql",
+      "categories": ["database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/mariadb.png",
+      "image": "linuxserver/mariadb:latest",
+      "name": ["mariadb"],
+      "ports": ["3306/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/mariadb/appdata/config",
+          "container": "/config"
+        }
+      ],
+      "env": [
+        {
+          "name": "MYSQL_ROOT_PASSWORD",
+          "label": "Root password",
+          "description": "Password used by the root user."
+        },
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "type": 1,
       "title": "Nginx",
       "description": "High performance web server",
       "categories": ["webserver"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/nginx.png",
-      "image": "nginx:latest",
+      "image": "linuxserver/nginx:latest",
+      "name": ["nginx"],
       "ports": ["80/tcp", "443/tcp"],
       "volumes": [
         {
@@ -128,6 +179,26 @@
         {
           "bind": "/docker/nginx/appdata/data",
           "container": "/usr/share/nginx/html"
+        }
+      ],
+      "env":[
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
         }
       ]
     }
