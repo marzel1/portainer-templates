@@ -3,7 +3,7 @@
   "templates": [
     {
       "type": 3,
-      "title": "Authelia",
+      "title": "!!! Authelia",
       "description": "BookStack is a simple, self-hosted, easy-to-use platform for organising and storing information.",
       "categories": ["authentication"],
       "platform": "linux",
