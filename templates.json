@@ -120,6 +120,59 @@
     },
     {
       "type": 1,
+      "title": "Code Server",
+      "description": "Code-Server is VS Code running on a remote server, accessible through the browser.",
+      "categories": ["editor"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/codeserver-light.png",
+      "image": "linuxserver/code-server:latest",
+      "name": ["code-server"],
+      "ports": ["8443/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/code-server/appdata/config",
+          "container": "/config"
+        }
+      ],
+      "env":[
+        {
+          "name": "SUDO_PASSWORD",
+          "label": "SUDO Password",
+          "description": "If this optional variable is set, user will have sudo access in the code-server terminal with the specified password."
+        },
+        {
+          "name": "PASSWORD",
+          "label": "Web GUI Password",
+          "description": "Optional web gui password, if not provided, there will be no auth."
+        },
+        {
+          "name": "PROXY_DOMAIN",
+          "label": "Proxy Domain",
+          "description": "If this optional variable is set, this domain will be proxied for subdomain proxying."
+        },
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]      
+    },
+    {
+      "type": 1,
       "title": "MariaDB",
       "description": "An Enhanced drop in replacement for Mysql",
       "categories": ["database"],
