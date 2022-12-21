@@ -11,6 +11,7 @@ services:
       - DB_USER=${DATABASE_USER}
       - DB_PASS=${DATABASE_PASSWORD}
       - DB_DATABASE=${DATABASE_NAME}
+      - APP_URL=${BOOKSTACK_URL}
     volumes:
       - /docker/bookstack-stack/appdata/config:/config
     ports:

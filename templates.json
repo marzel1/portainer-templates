@@ -104,6 +104,10 @@
         {
           "label": "PORT",
           "name": "PORT"
+        },
+        {
+          "label": "BOOKSTACK_URL",
+          "name": "BOOKSTACK_URL"
         }
       ]
     },
