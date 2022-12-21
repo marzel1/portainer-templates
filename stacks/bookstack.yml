@@ -13,7 +13,7 @@ services:
       - DB_DATABASE=${DATABASE_NAME}
       - APP_URL=${BOOKSTACK_URL}
     volumes:
-      - /docker/bookstack-stack/appdata/config:/config
+      - /docker/stacks/bookstack/appdata/config:/config
     ports:
       - ${PORT}:80
     restart: unless-stopped
@@ -31,5 +31,5 @@ services:
       - MYSQL_USER=${DATABASE_USER}
       - MYSQL_PASSWORD=${DATABASE_PASSWORD}
     volumes:
-      - /docker/bookstack-stack/appdata/db:/config
+      - /docker/stacks/bookstack/appdata/db:/config
     restart: unless-stopped
