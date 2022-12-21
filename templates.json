@@ -244,8 +244,7 @@
         {
           "name": "PMA_PORT",
           "label": "MySQL Port",
-          "description": "Port of the MySQL/MariaDB Server",
-          "default": "3306"
+          "description": "Port of the MySQL/MariaDB Server"
         },
         {
           "name": "TZ",
