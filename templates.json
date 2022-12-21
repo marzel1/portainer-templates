@@ -175,10 +175,6 @@
         {
           "bind": "/docker/nginx/appdata/config",
           "container": "/etc/nginx"
-        },
-        {
-          "bind": "/docker/nginx/appdata/data",
-          "container": "/usr/share/nginx/html"
         }
       ],
       "env":[
