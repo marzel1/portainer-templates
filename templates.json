@@ -3,7 +3,7 @@
   "templates": [
     {
       "type": 3,
-      "title": "!!! Authelia",
+      "title": "NOT-TESTED! Authelia",
       "description": "BookStack is a simple, self-hosted, easy-to-use platform for organising and storing information.",
       "categories": ["authentication"],
       "platform": "linux",
@@ -31,6 +31,102 @@
           "label": "PGID",
           "description": "Group ID to run as",
           "default": "1000"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Authentik",
+      "description": "Authentik is an open-source Identity Provider focused on flexibility and versatility.",
+      "categories": ["authentication"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/authentik-orange.png",
+      "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:2022.12.1)",
+      "repository": {
+        "stackfile": "stacks/authentik.yml",
+        "url": "https://github.com/marzel1/portainer-templates"
+      },
+      "env": [
+        {
+          "name": "PG_PASS",
+          "label": "Database Password",
+          "description": "Specify a database password to use"
+        },
+        {
+          "name": "AUTHENTIK_EMAIL__HOST",
+          "label": "Authentik Email Host",
+          "description": "Email Host Server",
+          "default": "localhost"
+        },
+        {
+          "name": "AUTHENTIK_EMAIL__PORT",
+          "label": "Authentik Email Port",
+          "description": "Email Host Server Port",
+          "default": "25"
+        },
+        {
+          "name": "AUTHENTIK_EMAIL__USERNAME",
+          "label": "Authentik Email Username",
+          "description": "Email Server User"
+        },
+        {
+          "name": "AUTHENTIK_EMAIL__PASSWORD",
+          "label": "Authentik Email Password",
+          "description": "Email Server Password"
+        },
+        {
+          "name": "AUTHENTIK_EMAIL__USE_TLS",
+          "label": "Authentik Email use TLS",
+          "description": "If TLS should be used.",
+          "default": "false"
+        },
+        {
+          "name": "AUTHENTIK_EMAIL__USE_SSL",
+          "label": "Authentik Email use SSL",
+          "description": "If SSL should be used.",
+          "default": "false"
+        },
+        {
+          "name": "AUTHENTIK_EMAIL__TIMEOUT",
+          "label": "Authentik Email Timeout",
+          "description": "Email Timeout",
+          "default": "10"
+        },
+        {
+          "name": "AUTHENTIK_EMAIL__FROM",
+          "label": "Authentik Email From",
+          "description": "Use Email Address to sent the Mail."
+        },
+        {
+          "name": "AUTHENTIK_PORT_HTTP",
+          "label": "Authentik Port HTTP",
+          "description": "Used HTTP Port.",
+          "default": "80"
+        },
+        {
+          "name": "AUTHENTIK_PORT_HTTPS",
+          "label": "Authentik Port HTTPS",
+          "description": "Used HTTPS Port.",
+          "default": "443"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Dashy",
+      "description": "The Ultimate Homepage for your Homelab",
+      "categories": ["dashboard"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/dashy.png",
+      "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:2.1.1) Requires a conf.yml file in order to work. Documentation is available <a href='https://github.com/Lissy93/dashy/blob/master/docs/configuring.md'>here</a>.",
+      "image": "lissy93/dashy:latest",
+      "name": ["dashy"],
+      "ports": ["80:80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/dashy/appdata/conf.yml",
+          "container": "/app/public/conf.yml"
         }
       ]
     },
@@ -207,6 +303,265 @@
           "default": "1000"
         }
       ]      
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! DB Backup",
+      "description": "Backup Multiple DB Servers (Influx, Maria/Mysql/Mssql/Mongo/Postgres/Redis/Rethink) based on Alpine",
+      "categories": ["database", "backup"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/sqlitebrowser.png",
+      "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:3.7.3)",
+      "image": "tiredofit/db-backup:latest",
+      "name": ["db-backup"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/db-backup/appdata/backup",
+          "container": "/backup"
+        }
+      ],
+      "env":[
+        {
+          "name": "DB_TYPE",
+          "label": "Database Type",
+          "description": "Type of DB Server to backup",
+          "select": [
+            {
+              "text": "MariaDB",
+              "value": "mariadb",
+              "default": true
+            },
+            {
+              "text": "PostgreDB",
+              "value": "pgsql"
+            },
+            {
+              "text": "Redis",
+              "value": "redis"
+            },
+            {
+              "text": "MySQL",
+              "value": "mysql"
+            },
+            {
+              "text": "InfluxDB",
+              "value": "influx"
+            },
+            {
+              "text": "MongoDB",
+              "value": "mongo"
+            },
+            {
+              "text": "CouchDB",
+              "value": "couch"
+            }
+          ]
+        },
+        {
+          "name": "DB_HOST",
+          "label": "Database Host",
+          "description": "Server Hostname",
+          "default": "mariadb"
+        },
+        {
+          "name": "DB_NAME",
+          "label": "Database Name",
+          "description": "Schema Name (use 'all' if you want to backup all Databases).",
+          "default": "all"
+        },
+        {
+          "name": "DB_USER",
+          "label": "Database Username",
+          "description": "Username for the Database (use 'root' to backup all MySQL of them)."
+        },
+        {
+          "name": "DB_PASS",
+          "label": "Database Password",
+          "description": "Password for the Database (optional if DB doesn't require it)"
+        },
+        {
+          "name": "DB_PORT",
+          "label": "Database Port",
+          "description": "(optional) Set port to connect to DB_HOST. Defaults are provided"
+        },
+        {
+          "name": "DB_DUMP_FREQ",
+          "label": "Database dump Frequency",
+          "description": "How often to do a dump, in minutes. Defaults to 1440 minutes, or once per day.",
+          "default": "1440"
+        },
+        {
+          "name": "DB_DUMP_BEGIN",
+          "label": "Database dump begin Time",
+          "description": "What time to do the first dump. Defaults to immediate. Absolute HHMM, e.g. 2330 or 0415",
+          "default": "0100"
+        },
+        {
+          "name": "DB_CLEANUP_TIME",
+          "label": "Database cleanup Time",
+          "description": "Value in minutes to delete old backups (only fired when dump freqency fires). 1440 would delete anything above 1 day old. You don't need to set this variable if you want to hold onto everything. (10080 = 1 Week) ",
+          "default": "10080"
+        },
+        {
+          "name": "COMPRESSION",
+          "label": "Compression",
+          "description": "Compression used to compress the backup file.",
+          "select": [
+            {
+              "text": "Gzip",
+              "value": "GZ",
+              "default": true
+            },
+            {
+              "text": "Bzip2",
+              "value": "BZ"
+            },
+            {
+              "text": "XZip",
+              "value": "XZ"
+            },
+            {
+              "text": "ZSTD",
+              "value": "ZSTD"
+            },
+            {
+              "text": "None",
+              "value": "NONE"
+            }
+          ]
+        },
+        {
+          "name": "PARALLEL_COMPRESSION",
+          "label": "Parallel Compression",
+          "description": "Use multiple cores when compressing backups.",
+          "select": [
+            {
+              "text": "TRUE",
+              "value": "TRUE",
+              "default": true
+            },
+            {
+              "text": "FALSE",
+              "value": "FALSE"
+            }
+          ]
+        },
+        {
+          "name": "MD5",
+          "label": "MD5",
+          "description": "Generate MD5 Sum in Directory.",
+          "select": [
+            {
+              "text": "TRUE",
+              "value": "TRUE",
+              "default": true
+            },
+            {
+              "text": "FALSE",
+              "value": "FALSE"
+            }
+          ]
+        },
+        {
+          "name": "SPLIT_DB",
+          "label": "Split Databases",
+          "description": "If using root as username and multiple DBs on system, set to TRUE to create Seperate DB Backups instead of all in one.",
+          "select": [
+            {
+              "text": "FALSE",
+              "value": "FALSE",
+              "default": true
+            },
+            {
+              "text": "TRUE",
+              "value": "TRUE"
+            }
+          ]
+        },
+        {
+          "name": "DEBUG_MODE",
+          "label": "Debug Mode",
+          "description": "If set to true, print copious shell script messages to the container log. Otherwise only basic messages are printed.",
+          "select": [
+            {
+              "text": "FALSE",
+              "value": "FALSE",
+              "default": true
+            },
+            {
+              "text": "TRUE",
+              "value": "TRUE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Duplicati",
+      "description": "Free backup software to store encrypted backups online",
+      "categories": ["backup"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/duplicati.png",
+      "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:2.0.6)",
+      "image": "linuxserver/duplicati:latest",
+      "name": ["duplicati"],
+      "ports": ["8200:8200/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/duplicati/appdata/config",
+          "container": "/config"
+        },
+        {
+          "bind": "/docker",
+          "container": "/mnt/docker"
+        },
+        {
+          "bind": "/docker/duplicati/appdata/backup",
+          "container": "/mnt/backup"
+        }
+      ],
+      "env":[
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "0"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "0"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Gitea",
+      "description": "Gitea: Git with a cup of tea - A painless self-hosted Git service.",
+      "categories": ["git"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/gitea.png",
+      "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:1.18.0)",
+      "image": "gitea/gitea:latest",
+      "name": ["gitea"],
+      "ports": ["22:22/tcp", "3000:3000/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/gitea/appdata/data",
+          "container": "/data"
+        }
+      ]
     },
     {
       "type": 1,
