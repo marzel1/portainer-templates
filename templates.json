@@ -565,8 +565,235 @@
     },
     {
       "type": 1,
-      "title": "MariaDB",
+      "title": "NOT-TESTED! Gitlab",
+      "description": "From planning to production, GitLab brings teams together to shorten cycle times, reduce costs, strengthen security, and increase developer productivity.",
+      "categories": ["git"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/gitlab.png",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:15.7.0)",
+      "image": "gitlab/gitlab-ce:latest",
+      "name": ["gitlab"],
+      "ports": ["22:22/tcp", "9080:9080/tcp","9443:9443/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/gitlab/appdata/config",
+          "container": "/etc/gitlab"
+        },
+        {
+          "bind": "/docker/gitlab/appdata/data",
+          "container": "/var/opt/gitlab"
+        },
+        {
+          "bind": "/docker/gitlab/appdata/log",
+          "container": "/var/log/gitlab"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Grafana",
+      "description": "Operational dashboards for your data here, there, or anywhere",
+      "categories": ["monitoring"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/grafana.png",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:9.3.2)",
+      "image": "grafana/grafana:latest",
+      "name": ["grafana"],
+      "ports": ["3000:3000/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/grafana/appdata/grafana",
+          "container": "/var/lib/grafana"
+        }
+      ],
+      "env":[
+        {
+          "name": "GF_SECURITY_ADMIN_PASSWORD",
+          "label": "Admin Password",
+          "description": "Password used by the Admin user."
+        },
+        {
+          "name": "GF_SERVER_ROOT_URL",
+          "label": "Server URL",
+          "description": "Server URL"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Guacd",
+      "description": "Guacd is the native server-side proxy used by the Apache Guacamole web application. If you wish to deploy Guacamole, or an application using the Guacamole core APIs, you will need a copy of guacd running.",
+      "categories": ["remote"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/guacamole.png",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:1.4.0)",
+      "image": "guacamole/guacd:latest",
+      "name": ["guacd"],
+      "restart_policy": "unless-stopped",
+      "env":[
+        {
+          "name": "GUACD_LOG_LEVEL",
+          "label": "Log Level",
+          "description": "Set the Log Level",
+          "select": [
+            {
+              "text": "info",
+              "value": "info",
+              "default": true
+            },
+            {
+              "text": "debug",
+              "value": "debug"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Guacd (Linuxserver)",
+      "description": "Guacd is the native server-side proxy used by the Apache Guacamole web application. If you wish to deploy Guacamole, or an application using the Guacamole core APIs, you will need a copy of guacd running.",
+      "categories": ["remote"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/guacamole.png",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:1.4.0)",
+      "image": "linuxserver/guacd:latest",
+      "name": ["guacd"],
+      "restart_policy": "unless-stopped",
+      "env":[
+        {
+          "name": "GUACD_LOG_LEVEL",
+          "label": "Log Level",
+          "description": "Set the Log Level",
+          "select": [
+            {
+              "text": "info",
+              "value": "info",
+              "default": true
+            },
+            {
+              "text": "debug",
+              "value": "debug"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Guacamole",
+      "description": "Apache Guacamole is a clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH.",
+      "categories": ["remote"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/guacamole.png",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:1.4.0)",
+      "image": "guacamole/guacamole:latest",
+      "name": ["guacamole"],
+      "ports": ["8080:8080/tcp"],
+      "restart_policy": "unless-stopped",
+      "env":[
+        {
+          "name": "GUACD_HOSTNAME",
+          "label": "Guacd Hostname",
+          "description": "Hostname of the Guacd Service."
+        },
+        {
+          "name": "GUACD_POST",
+          "label": "Guacd Port",
+          "description": "Port of the Guacd Service."
+        },
+        {
+          "name": "MYSQL_HOSTNAME",
+          "label": "MySQL Hostname",
+          "description": "Hostname of the MySQL/MariaDB Server"
+        },
+        {
+          "name": "MYSQL_PORT",
+          "label": "MySQL Port",
+          "description": "Port of the MySQL/MariaDB Server."
+        },
+        {
+          "name": "MYSQL_DATABASE",
+          "label": "MySQL Database Name",
+          "description": "Name of the Database."
+        },
+        {
+          "name": "MYSQL_USER",
+          "label": "MySQL User",
+          "description": "Username for the Database."
+        },
+        {
+          "name": "MYSQL_PASSWORD",
+          "label": "MySQL Password",
+          "description": "Password for the Database (optional if DB doesn't require it)"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Heimdall",
+      "description": "Heimdall Application Dashboard is a dashboard for all your web applications.",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:2.5.4)",
+      "categories": ["dashboard"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/heimdall-light.png",
+      "image": "linuxserver/heimdall:latest",
+      "name": ["heimdall"],
+      "ports": ["80:80/tcp", "443:443/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/heimdall/appdata/config",
+          "container": "/config"
+        }
+      ],
+      "env":[
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Homer",
+      "description": "A dead simple static HOMepage for your servER to keep your services on hand, from a simple yaml configuration file.",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:22.11.2) Requires a config file. Documentation is available <a href='https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md'>here</a>.",
+      "categories": ["dashboard"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/homer.png",
+      "image": "b4bz/homer:latest",
+      "name": ["homer"],
+      "ports": ["8080:8080/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/homer/appdata/assets",
+          "container": "/www/assets"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "MariaDB (Linuxserver)",
       "description": "An Enhanced drop in replacement for Mysql",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:2.5.4)",
       "categories": ["database"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/mariadb.png",
@@ -603,6 +830,37 @@
           "label": "PGID",
           "description": "Group ID to run as",
           "default": "1000"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Nextcloud",
+      "description": "Regain control over your data! Remote collaboration made easy.",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:25.0.2)",
+      "categories": ["cloud", "storage"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/nextcloud.png",
+      "image": "nextcloud",
+      "name": ["nextcloud"],
+      "ports": ["80:80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/nextcloud/appdata/html",
+          "container": "/var/www/html"
+        },
+        {
+          "bind": "/docker/nextcloud/appdata/config",
+          "container": "/var/www/html/config"
+        },
+        {
+          "bind": "/docker/nextcloud/appdata/data",
+          "container": "/var/www/html/data"
+        },
+        {
+          "bind": "/docker/nextcloud/appdata/apps",
+          "container": "/var/www/html/custom_apps"
         }
       ]
     },
@@ -649,8 +907,48 @@
     },
     {
       "type": 1,
+      "title": "NOT-TESTED! Nginx Proxy Manager",
+      "description": "Expose your services easily and securely.",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:2.9.19)",
+      "categories": ["proxy", "webserver"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/nginxproxymanager.png",
+      "image": "jc21/nginx-proxy-manager:latest",
+      "name": ["nginxproxymanager"],
+      "ports": ["81:81/tcp","80:80/tcp","443:443/tcp","3000:3000/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/nginxproxymanager/appdata/data",
+          "container": "/data"
+        },
+        {
+          "bind": "/docker/nginxproxymanager/appdata/letsencrypt",
+          "container": "/etc/letsencrypt"
+        },
+        {
+          "bind": "/docker/nginxproxymanager/appdata/log",
+          "container": "/var/log"
+        },
+        {
+          "bind": "/docker/nginxproxymanager/appdata/logs",
+          "container": "/data/var/logs"
+        }
+      ],
+      "env": [
+        {
+          "name": "DB_SQLITE_FILE",
+          "label": "Database",
+          "description": "Database to use.",
+          "default": "/data/database.sqlite"
+        }
+      ]
+    },
+    {
+      "type": 1,
       "title": "phpMyAdmin",
       "description": "A web interface for MySQL and MariaDB.",
+      "note": "TEMPLATE INFO:(AddedDate:20221231 - DockerVersion:2.9.19)",
       "categories": ["database"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/phpmyadmin.png",
@@ -705,6 +1003,71 @@
         },
         {
           "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Plex Media Server",
+      "description": "Watch anytime, anywhere with the Plex app.",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:1.30.0)",
+      "categories": ["media"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/plex.png",
+      "image": "plexinc/pms-docker",
+      "name": ["plex"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/plex/appdata/config",
+          "container": " /config"
+        },
+        {
+          "bind": "/docker/plex/appdata/transcode",
+          "container": "/transcode"
+        },
+        {
+          "bind": "/docker/plex/appdata/movies",
+          "container": "/movies"
+        },
+        {
+          "bind": "/docker/plex/appdata/tv",
+          "container": "/tv"
+        },
+        {
+          "bind": "/docker/plex/appdata/music",
+          "container": "/music"
+        }
+      ],
+      "env": [
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PLEX_CLAIM",
+          "label": "Plex Claim",
+          "description": "Specify a Plex Claim to use"
+        },
+        {
+          "name": "VERSION",
+          "label": "Version",
+          "description": "Docker Version you want to use.",
+          "default": "latest"
+        },
+        {
+          "name": "PLEX_UID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PLEX_GID",
           "label": "PGID",
           "description": "Group ID to run as",
           "default": "1000"
