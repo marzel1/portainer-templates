@@ -1019,7 +1019,7 @@
       "categories": ["media"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/plex.png",
-      "image": "plexinc/pms-docker",
+      "image": "plexinc/pms-docker:latest",
       "name": ["plex"],
       "restart_policy": "unless-stopped",
       "volumes": [
@@ -1073,6 +1073,663 @@
           "label": "PGID",
           "description": "Group ID to run as",
           "default": "1000"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Portainer Templates",
+      "description": "Host your own Portainer Templates",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.0) Requires a config file. Documentation is available <a href='https://docs.portainer.io/advanced/app-templates/build'>here</a>.",
+      "categories": ["docker"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/portainer.png",
+      "image": "portainer/templates:latest",
+      "name": ["portainer-templates"],
+      "ports": ["80:80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/portainer/appdata/templates.json",
+          "container": "/usr/share/nginx/html/templates.json"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Postgres 15.1",
+      "description": "The PostgreSQL object-relational database system provides reliability and data integrity.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:3.17)",
+      "categories": ["database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/postgres.png",
+      "image": "postgres:15.1-alpine",
+      "name": ["postgres15.1"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/postgres15.1/appdata/data",
+          "container": "/var/lib/postgresql/data"
+        }
+      ],
+      "env": [
+        {
+          "name": "POSTGRES_USER",
+          "label": "User",
+          "description": "Initial superuser name."
+        },
+        {
+          "name": "POSTGRES_PASSWORD",
+          "label": "Password",
+          "description": "Initial superuser password."
+        },
+        {
+          "name": "Database",
+          "label": "Initial Database Name",
+          "description": "Initial Database Name."
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Postgres 14.6",
+      "description": "The PostgreSQL object-relational database system provides reliability and data integrity.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:3.17)",
+      "categories": ["database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/postgres.png",
+      "image": "postgres:14.6-alpine",
+      "name": ["postgres14.6"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/postgres14.6/appdata/data",
+          "container": "/var/lib/postgresql/data"
+        }
+      ],
+      "env": [
+        {
+          "name": "POSTGRES_USER",
+          "label": "User",
+          "description": "Initial superuser name."
+        },
+        {
+          "name": "POSTGRES_PASSWORD",
+          "label": "Password",
+          "description": "Initial superuser password."
+        },
+        {
+          "name": "Database",
+          "label": "Initial Database Name",
+          "description": "Initial Database Name."
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Prometheus",
+      "description": "Prometheus is a systems and service monitoring system. It collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts if some condition is observed to be true.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:2.41.0)",
+      "categories": ["monitoring"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/prometheus.png",
+      "image": "prom/prometheus:latest",
+      "name": ["prometheus"],
+      "ports": ["9090:9090/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/prometheus/appdata/data",
+          "container": "/prometheus"
+        },
+        {
+          "bind": "/docker/prometheus/appdata/config",
+          "container": "/etc/prometheus/"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Redis",
+      "description": "Redis is an open source key-value store that functions as a data structure server.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:7.0.7)",
+      "categories": ["database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/redis.png",
+      "image": "redis:latest",
+      "name": ["redis"],
+      "ports": ["6379:6379/tcp"],
+      "restart_policy": "unless-stopped"
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Roundcube",
+      "description": "Roundcube webmail is a browser-based multilingual IMAP client with an application-like user interface.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.6.0)",
+      "categories": ["mail"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/roundcube.png",
+      "image": "roundcube/roundcubemail:latest",
+      "name": ["roundcube"],
+      "ports": ["80:80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/roundcube/appdata/data",
+          "container": "/var/www/html"
+        },
+        {
+          "bind": "/docker/roundcube/appdata/config",
+          "container": "/var/roundcube/config"
+        },
+        {
+          "bind": "/docker/roundcube/appdata/db",
+          "container": "/var/roundcube/db"
+        },
+        {
+          "bind": "/docker/roundcube/appdata/temp",
+          "container": "/tmp/roundcube-temp"
+        }
+      ],
+      "env": [
+        {
+          "name": "ROUNDCUBEMAIL_DEFAULT_HOST",
+          "label": "IMAP Server",
+          "description": "Hostname of the IMAP server to connect to. For encypted connections, prefix the host with tls:// (STARTTLS) or ssl:// (SSL/TLS)."
+        },
+        {
+          "name": "ROUNDCUBEMAIL_DEFAULT_PORT",
+          "label": "IMAP Server Port",
+          "description": "IMAP port number",
+          "default": "143"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_SMTP_SERVER",
+          "label": "SMTP Server",
+          "description": "Hostname of the SMTP server to send mails. For encypted connections, prefix the host with tls:// (STARTTLS) or ssl:// (SSL/TLS)."
+        },
+        {
+          "name": "ROUNDCUBEMAIL_SMTP_PORT",
+          "label": "SMTP Server Port",
+          "description": "SMTP port number",
+          "default": "587"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_PLUGINS",
+          "label": "Roundcube Plugins",
+          "description": "List of built-in plugins to activate.",
+          "default": "archive,zipdownload"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_SKIN",
+          "label": "Roundcube Skin",
+          "description": "Configures the default theme.",
+          "select": [
+            {
+              "text": "Classic",
+              "value": "classic"
+            },              
+            {
+              "text": "Elastic",
+              "value": "elastic"
+            },
+            {
+              "text": "Larry",
+              "value": "larry",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "ROUNDCUBEMAIL_UPLOAD_MAX_FILESIZE",
+          "label": "Upload Limit",
+          "description": "File upload size limit.",
+          "default": "5M"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_SPELLCHECK_URI",
+          "label": "Spellcheck URL",
+          "description": "Fully qualified URL to a Google XML spell check API like google-spell-pspell"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_ASPELL_DICTS",
+          "label": "Spellcheck dictionaries",
+          "description": "List of aspell dictionaries to install for spell checking (comma-separated, e.g. de,fr,pl)."
+        },
+        {
+          "name": "ROUNDCUBEMAIL_DB_TYPE",
+          "label": "Database Type",
+          "description": "Database provider; currently supported: mysql, pgsql, sqlite",
+          "select": [
+            {
+              "text": "SQLite",
+              "value": "sqlite",
+              "default": true
+            },
+            {
+              "text": "MySQL",
+              "value": "mysql"
+            },
+            {
+              "text": "Postgres",
+              "value": "pgsql"
+            }
+          ]
+        },
+        {
+          "name": "ROUNDCUBEMAIL_DB_HOST",
+          "label": "Database Host",
+          "description": "Host (or Docker instance) name of the database service; defaults to mysql or postgres depending on linked containers.",
+          "default": "mariadb"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_DB_PORT",
+          "label": "Database Port",
+          "description": "Port number of the database service; defaults to 3306 or 5432 depending on linked containers.",
+          "default": "3306"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_DB_USER",
+          "label": "Database User",
+          "description": "The database username for Roundcube; defaults to root on mysql",
+          "default": "root"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_DB_PASSWORD",
+          "label": "Database Password",
+          "description": "The password for the database connection.",
+          "default": "password"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_DB_NAME",
+          "label": "Database Name",
+          "description": "The database name for Roundcube to use; defaults to roundcubemail",
+          "default": "roundcubedb"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Speedtest Tracker",
+      "description": "This program runs a speedtest check every hour and graphs the results. The back-end is written in Laravel and the front-end uses React. It uses the speedtest-cli package to get the data and uses Chart.js to plot the results.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.12.0)",
+      "categories": ["monitoring"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/speedtest-tracker.png",
+      "image": "henrywhitaker3/speedtest-tracker:latest",
+      "name": ["speedtest-tracker"],
+      "ports": ["80:80/tcp", "443:443/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/speedtest-tracker/appdata/config",
+          "container": "/config"
+        }
+      ],
+      "env":[
+        {
+          "name": "AUTH",
+          "label": "Authentication",
+          "description": "Optional. Set to 'true' to enable authentication for the app",
+          "select": [
+            {
+              "text": "True",
+              "value": "true",
+              "default": true
+            },
+            {
+              "text": "False",
+              "value": "false"
+            }
+          ]
+        },
+        {
+          "name": "SLACK_WEBHOOK",
+          "label": "Slack/Discord Webhook",
+          "description": "Optional. Put a slack webhook here to get slack notifications when a speedtest is run. To use discord webhooks, just append /slack to the end of your discord webhook URL"
+        },
+        {
+          "name": "OOKLA_EULA_GDPR",
+          "label": "Ookla Eula",
+          "description": "Set to 'true' to accept the Ookla EULA and privacy agreement. If this is not set, the container will not start",
+          "select": [
+            {
+              "text": "True",
+              "value": "true",
+              "default": true
+            },
+            {
+              "text": "False",
+              "value": "false"
+            }
+          ]
+        },
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "Used User ID",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Used Group ID",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Speedtest Tracker 2",
+      "description": "Speedtest Tracker is a self-hosted internet performance tracking application that runs speedtest checks against Ookla's Speedtest service.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:0.9.2)",
+      "categories": ["monitoring"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/speedtest-tracker.png",
+      "image": "alexjustesen/speedtest-tracker:latest",
+      "name": ["speedtest-tracker2"],
+      "ports": ["80:80/tcp", "443:443/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/speedtest-tracker2/appdata/config",
+          "container": "/config"
+        }
+      ],
+      "env":[
+        {
+          "name": "DB_CONNECTION",
+          "label": "Database Type",
+          "description": "Database provider; currently supported: mysql, pgsql",
+          "select": [
+            {
+              "text": "MariaDB",
+              "value": "mysql",
+              "default": true
+            },
+            {
+              "text": "Postgres",
+              "value": "pgsql"
+            }
+          ]
+        },
+        {
+          "name": "DB_HOST",
+          "label": "Database Host",
+          "description": "The database host"
+        },
+        {
+          "name": "DB_PORT",
+          "label": "Database Port",
+          "description": "Port number of the database service; defaults to 3306 or 5432 depending on linked containers."
+        },
+        {
+          "name": "DB_DATABASE",
+          "label": "Database Name",
+          "description": "The database name for Speedtest-Tracker to use.",
+          "default": "speedtestdb"
+        },
+        {
+          "name": "DB_USERNAME",
+          "label": "Database User",
+          "description": "The database username for Speedtest-tracker; defaults to root on mysql.",
+          "default": "root"
+        },
+        {
+          "name": "DB_PASSWORD",
+          "label": "Database Password",
+          "description": "Password for the Database (optional if DB doesn't require it)",
+          "default": "password"
+        },
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "Used User ID",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Used Group ID",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Traefik",
+      "description": "The Cloud-Native application proxy",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:3.0)",
+      "categories": ["proxy"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/traefik.png",
+      "image": "traefik:latest",
+      "name": ["traefik"],
+      "ports": ["80:80/tcp", "443:443/tcp", "8080:8080/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/traefik/appdata/config",
+          "container": "/etc/traefik/"
+        },
+        {
+          "bind": "/docker/traefik/appdata/ssl-certs",
+          "container": "/ssl-certs"
+        },
+        {
+          "bind": "/var/run/docker.sock",
+          "container": "/var/run/docker.sock"
+        }
+      ],
+      "env":[
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "Used User ID",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Used Group ID",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Trilium Notes",
+      "description": "Trilium Notes is a hierarchical note taking application with focus on building large personal knowledge bases.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:0.58)",
+      "categories": ["proxy", "other"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/trilium.png",
+      "image": "zadam/trilium:latest",
+      "name": ["trilium"],
+      "ports": ["80:80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/trilium/appdata/data",
+          "container": "/home/node/trilium-data"
+        }
+      ],
+      "env":[
+        {
+          "name": "USER_UID",
+          "label": "PUID",
+          "description": "Used User ID",
+          "default": "1000"
+        },
+        {
+          "name": "USER_GID",
+          "label": "PGID",
+          "description": "Used Group ID",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Teleport",
+      "description": "Identity-Native Infrastructure Access",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:???)",
+      "categories": ["proxy", "other"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/teleport.png",
+      "image": "teleport:latest",
+      "name": ["teleport"],
+      "ports": ["80:80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/teleport/appdata/data",
+          "container": "/data"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Vaultwarden",
+      "description": "Vaultwarden (formerly bitwarden_rs) is a Bitwarden server API implementation written in Rust compatible with upstream Bitwarden clients, perfect for self-hosted deployment where running the official resource-heavy service might not be ideal.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.27.0)",
+      "categories": ["password"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/bitwarden.png",
+      "image": "vaultwarden/server:latest",
+      "name": ["vaultwarden"],
+      "ports": ["80:80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/vaultwarden/appdata/data",
+          "container": "/data"
+        }
+      ],
+      "env":[
+        {
+          "name": "SERVER_ADMIN_EMAIL",
+          "label": "Admin Email",
+          "description": "Email Address of the Admin Account.",
+          "default": "admin@account.com"
+        },
+        {
+          "name": "SIGNUPS_ALLOWED",
+          "label": "Signup Allowed",
+          "description": "Set it to True if you want to allow User to signup.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "INVITATIONS_ALLOWED",
+          "label": "Invitation Allowed",
+          "description": "Set it to True if you want to allow User to invate other Users.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "WEBSOCKET_ENABLED",
+          "label": "Websocket Enabled",
+          "description": "Enable the Websocket.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "ADMIN_TOKEN",
+          "label": "Admin Token",
+          "description": "Admin Token to configure Admin Settings."
+        },
+        {
+          "name": "DOMAIN",
+          "label": "Proxy Domain",
+          "description": "If this optional variable is set, this domain will be proxied for subdomain proxying.",
+          "default": "secure.domain.com"
+        },
+        {
+          "name": "YUBICO_CLIENT_ID",
+          "label": "Yubico Client ID",
+          "description": "Set the Client ID for your Yubico Key."
+        },
+        {
+          "name": "YUBICO_SECRET_KEY",
+          "label": "Yubico Secret Key",
+          "description": "Set the Secret Key for your Yubico Key."
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Watchtower",
+      "description": "A container-based solution for automating Docker container base image updates.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.5.1)",
+      "categories": ["update", "docker"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/watchtower.png",
+      "image": "containrrr/watchtower:latest",
+      "name": ["watchtower"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/var/run/docker.sock",
+          "container": "/var/run/docker.sock"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "NOT-TESTED! Warpgate",
+      "description": "Warpgate is a smart SSH, HTTPS and MySQL bastion host for Linux that doesn't need special client apps.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.5.1) Requires a Setup run before starting the Container. Documentation is available <a href='https://github.com/warp-tech/warpgate/wiki/Getting-started-on-Docker'>here</a>.",
+      "categories": ["remote"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/logo.svg",
+      "image": "ghcr.io/warp-tech/warpgate:latest",
+      "name": ["warpgate"],
+      "ports": ["2222:2222/tcp", "8888:8888/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/warpgate/appdata/data",
+          "container": "/data"
         }
       ]
     }
