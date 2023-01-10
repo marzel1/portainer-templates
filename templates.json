@@ -599,37 +599,29 @@
       "categories": ["monitoring"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/grafana.png",
-      "image": "grafana/grafana:latest",
-      "name": ["grafana"],
-      "ports": ["3000:3000/tcp"],
-      "restart_policy": "unless-stopped",
-      "volumes": [
-        {
-          "bind": "/docker/grafana/appdata/grafana",
-          "container": "/var/lib/grafana"
-        }
-      ],
+      "repository": {
+        "stackfile": "stacks/grafana.yml",
+        "url": "https://github.com/marzel1/portainer-templates"
+      },
       "env":[
         {
-          "name": "GF_SECURITY_ADMIN_PASSWORD",
+          "name": "PORT",
+          "label": "Port"
+        },
+        {
+          "name": "SECURITY_ADMIN_PASSWORD",
           "label": "Admin Password",
           "description": "Password used by the Admin user."
         },
         {
-          "name": "GF_SERVER_ROOT_URL",
+          "name": "SERVER_ROOT_URL",
           "label": "Server URL",
           "description": "Server URL"
         },
         {
-          "name": "PUID",
-          "label": "PUID",
+          "name": "USER",
+          "label": "User ID",
           "description": "User ID to run as",
-          "default": "1000"
-        },
-        {
-          "name": "PGID",
-          "label": "PGID",
-          "description": "Group ID to run as",
           "default": "1000"
         }
       ]
