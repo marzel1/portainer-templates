@@ -630,36 +630,6 @@
       "categories": ["remote"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/guacamole.png",
-      "image": "guacamole/guacd:latest",
-      "name": ["guacd"],
-      "restart_policy": "unless-stopped",
-      "env":[
-        {
-          "name": "GUACD_LOG_LEVEL",
-          "label": "Log Level",
-          "description": "Set the Log Level",
-          "select": [
-            {
-              "text": "info",
-              "value": "info",
-              "default": true
-            },
-            {
-              "text": "debug",
-              "value": "debug"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": 1,
-      "title": "NOT-TESTED! Guacd (Linuxserver)",
-      "description": "Guacd is the native server-side proxy used by the Apache Guacamole web application. If you wish to deploy Guacamole, or an application using the Guacamole core APIs, you will need a copy of guacd running.",
-      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:1.4.0)",
-      "categories": ["remote"],
-      "platform": "linux",
-      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/guacamole.png",
       "image": "linuxserver/guacd:latest",
       "name": ["guacd"],
       "restart_policy": "unless-stopped",
@@ -909,9 +879,9 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Nginx Proxy Manager",
+      "title": "Nginx Proxy Manager",
       "description": "Expose your services easily and securely.",
-      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:2.9.19)",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:2.9.19) Default Admin User: admin@example.com Default Password: changeme",
       "categories": ["proxy", "webserver"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/nginxproxymanager.png",
@@ -935,14 +905,6 @@
         {
           "bind": "/docker/nginxproxymanager/appdata/logs",
           "container": "/data/var/logs"
-        }
-      ],
-      "env": [
-        {
-          "name": "DB_SQLITE_FILE",
-          "label": "Database",
-          "description": "Database to use.",
-          "default": "/data/database.sqlite"
         }
       ]
     },
@@ -1078,7 +1040,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Portainer Templates",
+      "title": "Portainer Templates",
       "description": "Host your own Portainer Templates",
       "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.0) Requires a config file. Documentation is available <a href='https://docs.portainer.io/advanced/app-templates/build'>here</a>.",
       "categories": ["docker"],
