@@ -592,7 +592,7 @@
       ]
     },
     {
-      "type": 1,
+      "type": 3,
       "title": "NOT-TESTED! Grafana",
       "description": "Operational dashboards for your data here, there, or anywhere",
       "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:9.3.2)",
