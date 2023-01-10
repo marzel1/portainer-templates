@@ -619,6 +619,18 @@
           "name": "GF_SERVER_ROOT_URL",
           "label": "Server URL",
           "description": "Server URL"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
         }
       ]
     },
