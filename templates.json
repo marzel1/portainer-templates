@@ -593,9 +593,9 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Grafana",
+      "title": "Grafana",
       "description": "Operational dashboards for your data here, there, or anywhere",
-      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:9.3.2)",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:9.3.2) Grafana runs under the grafana user/472, make sure the appdata folder has the correct permissions.",
       "categories": ["monitoring"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/grafana.png",
@@ -603,7 +603,6 @@
       "name": ["grafana"],
       "ports": ["3000:3000/tcp"],
       "restart_policy": "unless-stopped",
-      "command": "--user 1000",
       "volumes": [
         {
           "bind": "/docker/grafana/appdata/grafana",
@@ -620,12 +619,6 @@
           "name": "SERVER_ROOT_URL",
           "label": "Server URL",
           "description": "Server URL"
-        },
-        {
-          "name": "USER",
-          "label": "User ID",
-          "description": "User ID to run as",
-          "default": "1000"
         }
       ]
     },
