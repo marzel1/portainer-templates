@@ -113,7 +113,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Dashy",
+      "title": "Dashy",
       "description": "The Ultimate Homepage for your Homelab",
       "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:2.1.1) Requires a conf.yml file in order to work. Documentation is available <a href='https://github.com/Lissy93/dashy/blob/master/docs/configuring.md'>here</a>.",
       "categories": ["dashboard"],
@@ -125,7 +125,7 @@
       "restart_policy": "unless-stopped",
       "volumes": [
         {
-          "bind": "/docker/dashy/appdata/conf.yml",
+          "bind": "/docker/dashy/appdata/public/conf.yml",
           "container": "/app/public/conf.yml"
         }
       ]
@@ -500,7 +500,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Duplicati",
+      "title": "Duplicati",
       "description": "Free backup software to store encrypted backups online",
       "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:2.0.6)",
       "categories": ["backup"],
@@ -547,7 +547,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Gitea",
+      "title": "Gitea",
       "description": "Gitea: Git with a cup of tea - A painless self-hosted Git service.",
       "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:1.18.0)",
       "categories": ["git"],
@@ -734,7 +734,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Heimdall",
+      "title": "Heimdall",
       "description": "Heimdall Application Dashboard is a dashboard for all your web applications.",
       "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:2.5.4)",
       "categories": ["dashboard"],
@@ -773,7 +773,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Homer",
+      "title": "Homer",
       "description": "A dead simple static HOMepage for your servER to keep your services on hand, from a simple yaml configuration file.",
       "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:22.11.2) Requires a config file. Documentation is available <a href='https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md'>here</a>.",
       "categories": ["dashboard"],
@@ -792,7 +792,7 @@
     },
     {
       "type": 1,
-      "title": "MariaDB (Linuxserver)",
+      "title": "MariaDB",
       "description": "An Enhanced drop in replacement for Mysql",
       "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:2.5.4)",
       "categories": ["database"],
