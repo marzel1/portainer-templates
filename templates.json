@@ -592,22 +592,25 @@
       ]
     },
     {
-      "type": 3,
+      "type": 1,
       "title": "NOT-TESTED! Grafana",
       "description": "Operational dashboards for your data here, there, or anywhere",
       "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:9.3.2)",
       "categories": ["monitoring"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/grafana.png",
-      "repository": {
-        "stackfile": "stacks/grafana.yml",
-        "url": "https://github.com/marzel1/portainer-templates"
-      },
-      "env":[
+      "image": "grafana/grafana:latest",
+      "name": ["grafana"],
+      "ports": ["3000:3000/tcp"],
+      "restart_policy": "unless-stopped",
+      "command": "--user 1000",
+      "volumes": [
         {
-          "name": "PORT",
-          "label": "Port"
-        },
+          "bind": "/docker/grafana/appdata/grafana",
+          "container": "/var/lib/grafana"
+        }
+      ],
+      "env":[
         {
           "name": "SECURITY_ADMIN_PASSWORD",
           "label": "Admin Password",
