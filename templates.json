@@ -1226,9 +1226,9 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Prometheus",
+      "title": "Prometheus",
       "description": "Prometheus is a systems and service monitoring system. It collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts if some condition is observed to be true.",
-      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:2.41.0)",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:2.41.0) Prometheus runs as the UID: 65534 in the GID: 65534 in the container. You must ensure that all files are readable, and where necessary (e.g. the working/session directory) writeable for this user on the host machine.",
       "categories": ["monitoring"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/prometheus.png",
@@ -1249,7 +1249,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Redis",
+      "title": "Redis",
       "description": "Redis is an open source key-value store that functions as a data structure server.",
       "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:7.0.7)",
       "categories": ["database"],
