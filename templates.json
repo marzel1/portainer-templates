@@ -1090,7 +1090,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Postgres 15.1",
+      "title": "Postgres 15.1",
       "description": "The PostgreSQL object-relational database system provides reliability and data integrity.",
       "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:3.17)",
       "categories": ["database"],
@@ -1115,17 +1115,12 @@
           "name": "POSTGRES_PASSWORD",
           "label": "Password",
           "description": "Initial superuser password."
-        },
-        {
-          "name": "Database",
-          "label": "Initial Database Name",
-          "description": "Initial Database Name."
         }
       ]
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Postgres 14.6",
+      "title": "Postgres 14.6",
       "description": "The PostgreSQL object-relational database system provides reliability and data integrity.",
       "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:3.17)",
       "categories": ["database"],
@@ -1150,11 +1145,66 @@
           "name": "POSTGRES_PASSWORD",
           "label": "Password",
           "description": "Initial superuser password."
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Postgres 13.9",
+      "description": "The PostgreSQL object-relational database system provides reliability and data integrity.",
+      "note": "TEMPLATE INFO:(AddedDate:20230111 - DockerVersion:3.17)",
+      "categories": ["database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/postgres.png",
+      "image": "postgres:13.9-alpine",
+      "name": ["postgres13.9"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/postgres13.9/appdata/data",
+          "container": "/var/lib/postgresql/data"
+        }
+      ],
+      "env": [
+        {
+          "name": "POSTGRES_USER",
+          "label": "User",
+          "description": "Initial superuser name."
         },
         {
-          "name": "Database",
-          "label": "Initial Database Name",
-          "description": "Initial Database Name."
+          "name": "POSTGRES_PASSWORD",
+          "label": "Password",
+          "description": "Initial superuser password."
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Postgres 12.13",
+      "description": "The PostgreSQL object-relational database system provides reliability and data integrity.",
+      "note": "TEMPLATE INFO:(AddedDate:20230111 - DockerVersion:3.17)",
+      "categories": ["database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/postgres.png",
+      "image": "postgres:12.13-alpine",
+      "name": ["postgres12.13"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/postgres12.13/appdata/data",
+          "container": "/var/lib/postgresql/data"
+        }
+      ],
+      "env": [
+        {
+          "name": "POSTGRES_USER",
+          "label": "User",
+          "description": "Initial superuser name."
+        },
+        {
+          "name": "POSTGRES_PASSWORD",
+          "label": "Password",
+          "description": "Initial superuser password."
         }
       ]
     },
