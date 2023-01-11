@@ -806,7 +806,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Nextcloud",
+      "title": "Nextcloud",
       "description": "Regain control over your data! Remote collaboration made easy.",
       "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:25.0.2)",
       "categories": ["cloud", "storage"],
@@ -910,6 +910,37 @@
     },
     {
       "type": 1,
+      "title": "pgAdmin 4",
+      "description": "pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.",
+      "note": "TEMPLATE INFO:(AddedDate:20230111 - DockerVersion:6.18) pgAdmin runs as the pgadmin user (UID: 5050) in the pgadmin group (GID: 5050) in the container. You must ensure that all files are readable, and where necessary (e.g. the working/session directory) writeable for this user on the host machine.",
+      "categories": ["database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/postgres.png",
+      "image": "dpage/pgadmin4:latest",
+      "name": ["pgadmin4"],
+      "ports": ["80:80/tcp","443:443/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/pgadmin4/appdata/config",
+          "container": "/var/lib/pgadmin"
+        }
+      ],
+      "env": [
+        {
+          "name": "PGADMIN_DEFAULT_EMAIL",
+          "label": "Admin Email",
+          "description": "Email Address of the Admin Account."
+        },
+        {
+          "name": "PGADMIN_DEFAULT_PASSWORD",
+          "label": "Admin Password",
+          "description": "Password used by the Admin user."
+        }
+      ]
+    },
+    {
+      "type": 1,
       "title": "phpMyAdmin",
       "description": "A web interface for MySQL and MariaDB.",
       "note": "TEMPLATE INFO:(AddedDate:20221231 - DockerVersion:5.2.0)",
@@ -918,7 +949,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/phpmyadmin.png",
       "image": "linuxserver/phpmyadmin:latest",
       "name": ["phpmyadmin"],
-      "ports": ["80/tcp"],
+      "ports": ["80:80/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
