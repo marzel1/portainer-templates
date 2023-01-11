@@ -307,7 +307,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! DB Backup",
+      "title": "DB Backup",
       "description": "Backup Multiple DB Servers (Influx, Maria/Mysql/Mssql/Mongo/Postgres/Redis/Rethink) based on Alpine",
       "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:3.7.3)",
       "categories": ["database", "backup"],
@@ -334,7 +334,7 @@
               "default": true
             },
             {
-              "text": "PostgreDB",
+              "text": "PostgresDB",
               "value": "pgsql"
             },
             {
@@ -477,6 +477,22 @@
             {
               "text": "TRUE",
               "value": "TRUE"
+            }
+          ]
+        },
+        {
+          "name": "CONTAINER_ENABLE_MONITORING",
+          "label": "Container Monitoring",
+          "description": "If you want to use Monitoring with Zabbix, set it to true.",
+          "select": [
+            {
+              "text": "TRUE",
+              "value": "TRUE"              
+            },
+            {
+              "text": "FALSE",
+              "value": "FALSE",
+              "default": true
             }
           ]
         },
