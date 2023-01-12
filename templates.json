@@ -53,7 +53,7 @@
           "description": "The database user",
           "default": "authentik"
         },
-                {
+        {
           "name": "PG_PASS",
           "label": "Database Password",
           "description": "Specify a database password to use"
@@ -63,6 +63,11 @@
           "label": "Database Name",
           "description": "Name of the Database.",
           "default": "authentik"
+        },
+        {
+          "name": "AUTH_SECRET_KEY",
+          "label": "Authentik Secret Key",
+          "description": "Secret Key need to be 50 characters long."
         },
         {
           "name": "AUTH_EMAIL__HOST",
@@ -140,6 +145,22 @@
           "label": "Authentik Port HTTPS",
           "description": "Used HTTPS Port.",
           "default": "9443"
+        },
+        {
+          "name": "AUTH_ERROR_REPORTING__ENABLED",
+          "label": "Authentik Error Reporting",
+          "description": "If Error Reporting should be used.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"              
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
         }
       ]
     },

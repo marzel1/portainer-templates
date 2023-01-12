@@ -14,9 +14,9 @@ services:
     volumes:
       - /docker/stacks/authentik/appdata/database:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=${PG_PASS}
-      - POSTGRES_USER=${PG_USER}
-      - POSTGRES_DB=${PG_DB}
+      - POSTGRES_PASSWORD: ${PG_PASS}
+      - POSTGRES_USER: ${PG_USER}
+      - POSTGRES_DB: ${PG_DB}
   redis:
     image: docker.io/library/redis:alpine
     command: --save 60 1 --loglevel warning
@@ -39,6 +39,7 @@ services:
       AUTHENTIK_POSTGRESQL__USER: ${PG_USER}
       AUTHENTIK_POSTGRESQL__NAME: ${PG_DB}
       AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
+      AUTHENTIK_SECRET_KEY: ${AUTH_SECRET_KEY}
       AUTHENTIK_EMAIL__HOST: ${AUTH_EMAIL__HOST}
       AUTHENTIK_EMAIL__PORT: ${AUTH_EMAIL__PORT}
       AUTHENTIK_EMAIL__USERNAME: ${AUTH_EMAIL__USERNAME}
@@ -47,6 +48,7 @@ services:
       AUTHENTIK_EMAIL__USE_SSL: ${AUTH_EMAIL__USE_SSL}
       AUTHENTIK_EMAIL__TIMEOUT: ${AUTH_EMAIL__TIMEOUT}
       AUTHENTIK_EMAIL__FROM: ${AUTH_EMAIL__FROM}
+      AUTHENTIK_ERROR_REPORTING__ENABLED: ${AUTH_ERROR_REPORTING__ENABLED}
     volumes:
       - /docker/stacks/authentik/appdata/media:/media
       - /docker/stacks/authentik/appdata/custom-templates:/templates
@@ -63,6 +65,7 @@ services:
       AUTHENTIK_POSTGRESQL__USER: ${PG_USER}
       AUTHENTIK_POSTGRESQL__NAME: ${PG_DB}
       AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
+      AUTHENTIK_SECRET_KEY: ${AUTH_SECRET_KEY}
       AUTHENTIK_EMAIL__HOST: ${AUTH_EMAIL__HOST}
       AUTHENTIK_EMAIL__PORT: ${AUTH_EMAIL__PORT}
       AUTHENTIK_EMAIL__USERNAME: ${AUTH_EMAIL__USERNAME}
@@ -71,6 +74,7 @@ services:
       AUTHENTIK_EMAIL__USE_SSL: ${AUTH_EMAIL__USE_SSL}
       AUTHENTIK_EMAIL__TIMEOUT: ${AUTH_EMAIL__TIMEOUT}
       AUTHENTIK_EMAIL__FROM: ${AUTH_EMAIL__FROM}
+      AUTHENTIK_ERROR_REPORTING__ENABLED: ${AUTH_ERROR_REPORTING__ENABLED}
     # `user: root` and the docker socket volume are optional.
     # See more for the docker socket integration here:
     # https://goauthentik.io/docs/outposts/integrations/docker
