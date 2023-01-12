@@ -53,8 +53,8 @@ services:
       - /docker/stacks/authentik/appdata/media:/media
       - /docker/stacks/authentik/appdata/custom-templates:/templates
     ports:
-      - "${AUTHENTIK_PORT_HTTP}:9000"
-      - "${AUTHENTIK_PORT_HTTPS}:9443"
+      - "${AUTH_PORT_HTTP}:9000"
+      - "${AUTH_PORT_HTTPS}:9443"
   worker:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2022.12.2}
     restart: unless-stopped
