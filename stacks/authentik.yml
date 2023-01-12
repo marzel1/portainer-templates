@@ -14,9 +14,9 @@ services:
     volumes:
       - /docker/stacks/authentik/appdata/database:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD: ${PG_PASS}
-      - POSTGRES_USER: ${PG_USER}
-      - POSTGRES_DB: ${PG_DB}
+      - POSTGRES_PASSWORD=${PG_PASS}
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_DB=${PG_DB}
   redis:
     image: docker.io/library/redis:alpine
     command: --save 60 1 --loglevel warning
