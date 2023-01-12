@@ -1538,9 +1538,9 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Speedtest Tracker 2",
+      "title": "Speedtest Tracker 2",
       "description": "Speedtest Tracker is a self-hosted internet performance tracking application that runs speedtest checks against Ookla's Speedtest service.",
-      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:0.9.2)",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:0.9.2) Default User: admin@example.com Default Password: password",
       "categories": ["monitoring"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/speedtest-tracker.png",
@@ -1621,7 +1621,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Traefik",
+      "title": "Traefik",
       "description": "The Cloud-Native application proxy",
       "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:3.0)",
       "categories": ["proxy"],
@@ -1662,7 +1662,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Trilium Notes",
+      "title": "Trilium Notes",
       "description": "Trilium Notes is a hierarchical note taking application with focus on building large personal knowledge bases.",
       "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:0.58)",
       "categories": ["proxy", "other"],
@@ -1714,9 +1714,9 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Vaultwarden",
+      "title": "Vaultwarden",
       "description": "Vaultwarden (formerly bitwarden_rs) is a Bitwarden server API implementation written in Rust compatible with upstream Bitwarden clients, perfect for self-hosted deployment where running the official resource-heavy service might not be ideal.",
-      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.27.0)",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.27.0) To start the initial setup, navigate to http://<your server>/admin/ and login with the ADMIN_TOKEN. After you have configured everything, set the DISABLE_ADMIN_TOKEN environment variable to true so that no one else can access the admin page.",
       "categories": ["password"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/bitwarden.png",
@@ -1794,7 +1794,7 @@
           "name": "DOMAIN",
           "label": "Proxy Domain",
           "description": "If this optional variable is set, this domain will be proxied for subdomain proxying.",
-          "default": "secure.domain.com"
+          "default": "http://secure.domain.com"
         },
         {
           "name": "YUBICO_CLIENT_ID",
@@ -1805,6 +1805,22 @@
           "name": "YUBICO_SECRET_KEY",
           "label": "Yubico Secret Key",
           "description": "Set the Secret Key for your Yubico Key."
+        },
+        {
+          "name": "DISABLE_ADMIN_TOKEN",
+          "label": "Disable Admin Token",
+          "description": "Set it to True if you want to allow Admin Page access.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
         }
       ]
     },
