@@ -14,11 +14,9 @@ services:
     volumes:
       - /docker/stacks/authentik/appdata/database:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=${PG_PASS:?database password required}
-      - POSTGRES_USER=${PG_USER:-authentik}
-      - POSTGRES_DB=${PG_DB:-authentik}
-    env_file:
-      - .env
+      - POSTGRES_PASSWORD=${PG_PASS}
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_DB=${PG_DB}
   redis:
     image: docker.io/library/redis:alpine
     command: --save 60 1 --loglevel warning
@@ -32,31 +30,47 @@ services:
     volumes:
       - /docker/stacks/authentik/appdata/redis:/data
   server:
-    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2022.12.1}
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2022.12.2}
     restart: unless-stopped
     command: server
     environment:
       AUTHENTIK_REDIS__HOST: redis
       AUTHENTIK_POSTGRESQL__HOST: postgresql
-      AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
-      AUTHENTIK_POSTGRESQL__NAME: ${PG_DB:-authentik}
+      AUTHENTIK_POSTGRESQL__USER: ${PG_USER}
+      AUTHENTIK_POSTGRESQL__NAME: ${PG_DB}
       AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
+      AUTHENTIK_EMAIL__HOST: ${AUTH_EMAIL__HOST}
+      AUTHENTIK_EMAIL__PORT: ${AUTH_EMAIL__PORT}
+      AUTHENTIK_EMAIL__USERNAME: ${AUTH_EMAIL__USERNAME}
+      AUTHENTIK_EMAIL__PASSWORD: ${AUTH_EMAIL__PASSWORD}
+      AUTHENTIK_EMAIL__USE_TLS: ${AUTH_EMAIL__USE_TLS}
+      AUTHENTIK_EMAIL__USE_SSL: ${AUTH_EMAIL__USE_SSL}
+      AUTHENTIK_EMAIL__TIMEOUT: ${AUTH_EMAIL__TIMEOUT}
+      AUTHENTIK_EMAIL__FROM: ${AUTH_EMAIL__FROM}
     volumes:
       - /docker/stacks/authentik/appdata/media:/media
       - /docker/stacks/authentik/appdata/custom-templates:/templates
     ports:
-      - "0.0.0.0:${AUTHENTIK_PORT_HTTP:-9000}:9000"
-      - "0.0.0.0:${AUTHENTIK_PORT_HTTPS:-9443}:9443"
+      - "${AUTHENTIK_PORT_HTTP}:9000"
+      - "${AUTHENTIK_PORT_HTTPS}:9443"
   worker:
-    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2022.12.1}
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2022.12.2}
     restart: unless-stopped
     command: worker
     environment:
       AUTHENTIK_REDIS__HOST: redis
       AUTHENTIK_POSTGRESQL__HOST: postgresql
-      AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
-      AUTHENTIK_POSTGRESQL__NAME: ${PG_DB:-authentik}
+      AUTHENTIK_POSTGRESQL__USER: ${PG_USER}
+      AUTHENTIK_POSTGRESQL__NAME: ${PG_DB}
       AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
+      AUTHENTIK_EMAIL__HOST: ${AUTH_EMAIL__HOST}
+      AUTHENTIK_EMAIL__PORT: ${AUTH_EMAIL__PORT}
+      AUTHENTIK_EMAIL__USERNAME: ${AUTH_EMAIL__USERNAME}
+      AUTHENTIK_EMAIL__PASSWORD: ${AUTH_EMAIL__PASSWORD}
+      AUTHENTIK_EMAIL__USE_TLS: ${AUTH_EMAIL__USE_TLS}
+      AUTHENTIK_EMAIL__USE_SSL: ${AUTH_EMAIL__USE_SSL}
+      AUTHENTIK_EMAIL__TIMEOUT: ${AUTH_EMAIL__TIMEOUT}
+      AUTHENTIK_EMAIL__FROM: ${AUTH_EMAIL__FROM}
     # `user: root` and the docker socket volume are optional.
     # See more for the docker socket integration here:
     # https://goauthentik.io/docs/outposts/integrations/docker

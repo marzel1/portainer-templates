@@ -48,66 +48,96 @@
       },
       "env": [
         {
+          "name": "PG_USER",
+          "label": "Database User",
+          "description": "The database user"
+        },
+                {
           "name": "PG_PASS",
           "label": "Database Password",
           "description": "Specify a database password to use"
         },
         {
-          "name": "AUTHENTIK_EMAIL__HOST",
+          "name": "PG_DB",
+          "label": "Database Name",
+          "description": "Name of the Database."
+        },
+        {
+          "name": "AUTH_EMAIL__HOST",
           "label": "Authentik Email Host",
           "description": "Email Host Server",
           "default": "localhost"
         },
         {
-          "name": "AUTHENTIK_EMAIL__PORT",
+          "name": "AUTH_EMAIL__PORT",
           "label": "Authentik Email Port",
           "description": "Email Host Server Port",
           "default": "25"
         },
         {
-          "name": "AUTHENTIK_EMAIL__USERNAME",
+          "name": "AUTH_EMAIL__USERNAME",
           "label": "Authentik Email Username",
           "description": "Email Server User"
         },
         {
-          "name": "AUTHENTIK_EMAIL__PASSWORD",
+          "name": "AUTH_EMAIL__PASSWORD",
           "label": "Authentik Email Password",
           "description": "Email Server Password"
         },
         {
-          "name": "AUTHENTIK_EMAIL__USE_TLS",
+          "name": "AUTH_EMAIL__USE_TLS",
           "label": "Authentik Email use TLS",
           "description": "If TLS should be used.",
-          "default": "false"
+          "select": [
+            {
+              "text": "True",
+              "value": "true"              
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
         },
         {
-          "name": "AUTHENTIK_EMAIL__USE_SSL",
+          "name": "AUTH_EMAIL__USE_SSL",
           "label": "Authentik Email use SSL",
           "description": "If SSL should be used.",
-          "default": "false"
+          "select": [
+            {
+              "text": "True",
+              "value": "true"              
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
         },
         {
-          "name": "AUTHENTIK_EMAIL__TIMEOUT",
+          "name": "AUTH_EMAIL__TIMEOUT",
           "label": "Authentik Email Timeout",
           "description": "Email Timeout",
           "default": "10"
         },
         {
-          "name": "AUTHENTIK_EMAIL__FROM",
+          "name": "AUTH_EMAIL__FROM",
           "label": "Authentik Email From",
           "description": "Use Email Address to sent the Mail."
         },
         {
-          "name": "AUTHENTIK_PORT_HTTP",
+          "name": "AUTH_PORT_HTTP",
           "label": "Authentik Port HTTP",
           "description": "Used HTTP Port.",
-          "default": "80"
+          "default": "9000"
         },
         {
-          "name": "AUTHENTIK_PORT_HTTPS",
+          "name": "AUTH_PORT_HTTPS",
           "label": "Authentik Port HTTPS",
           "description": "Used HTTPS Port.",
-          "default": "443"
+          "default": "9443"
         }
       ]
     },
