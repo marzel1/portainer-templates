@@ -35,7 +35,7 @@
       ]
     },
     {
-      "type": 1,
+      "type": 3,
       "title": "NOT-TESTED! Authentik",
       "description": "Authentik is an open-source Identity Provider focused on flexibility and versatility.",
       "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:2022.12.1)",
