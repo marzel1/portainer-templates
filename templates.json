@@ -1826,7 +1826,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Watchtower",
+      "title": "Watchtower",
       "description": "A container-based solution for automating Docker container base image updates.",
       "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.5.1)",
       "categories": ["update", "docker"],
@@ -1840,11 +1840,57 @@
           "bind": "/var/run/docker.sock",
           "container": "/var/run/docker.sock"
         }
+      ],
+      "env":[
+        {
+          "name": "WATCHTOWER_POLL_INTERVAL",
+          "label": "Poll Interval",
+          "description": "Poll interval (in seconds). This value controls how frequently watchtower will poll for new images. Default: 86400 (24hours)",
+          "default": "86400"
+        },
+        {
+          "name": "WATCHTOWER_CLEANUP",
+          "label": "Image Cleanup",
+          "description": "Removes old images after updating.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "WATCHTOWER_DEBUG",
+          "label": "Debug",
+          "description": "Enable debug mode with verbose logging.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        }
       ]
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Warpgate",
+      "title": "Warpgate",
       "description": "Warpgate is a smart SSH, HTTPS and MySQL bastion host for Linux that doesn't need special client apps.",
       "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.5.1) Requires a Setup run before starting the Container. Documentation is available <a href='https://github.com/warp-tech/warpgate/wiki/Getting-started-on-Docker'>here</a>.",
       "categories": ["remote"],
