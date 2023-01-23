@@ -1786,6 +1786,12 @@
           ]
         },
         {
+          "name": "WEBSOCKET_PORT",
+          "label": "Websocket Port",
+          "description": "Set the Port for the Websocket.",
+          "default": "3012"
+        },
+        {
           "name": "ADMIN_TOKEN",
           "label": "Admin Token",
           "description": "Admin Token to configure Admin Settings."
@@ -1821,6 +1827,51 @@
               "default": true
             }
           ]
+        },
+        {
+          "name": "SMTP_HOST",
+          "label": "SMTP Server",
+          "description": "Hostname of the SMTP server to send mails."
+        },
+        {
+          "name": "SMTP_FROM",
+          "label": "SMTP From",
+          "description": "Use Email Address to sent the Mail."
+        },
+        {
+          "name": "SMTP_PORT",
+          "label": "SMTP Server Port",
+          "description": "SMTP port number"
+        },
+        {
+          "name": "SMTP_SECURITY",
+          "label": "SMTP Security",
+          "description": "If SMTP encryption should be used.",
+          "select": [
+            {
+              "text": "force_tls",
+              "value": "force_tls"
+            },
+            {
+              "text": "starttls",
+              "value": "starttls",
+              "default": true
+            },
+            {
+              "text": "off",
+              "value": "off"
+            }
+          ]
+        },
+        {
+          "name": "SMTP_USERNAME",
+          "label": "SMTP Username",
+          "description": "SMTP Username to login to the Server."
+        },
+        {
+          "name": "SMTP_PASSWORD",
+          "label": "SMTP Password",
+          "description": "SMTP Password to login to the Server."
         }
       ]
     },
