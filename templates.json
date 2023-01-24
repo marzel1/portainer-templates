@@ -1621,6 +1621,45 @@
     },
     {
       "type": 1,
+      "title": "Theme Park",
+      "description": "A collection of themes/skins for your favorite apps!",
+      "note": "TEMPLATE INFO:(AddedDate:20230124 - DockerVersion:1.13.3)",
+      "categories": ["proxy"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/theme-park.png",
+      "image": "ghcr.io/gilbn/theme.park",
+      "name": ["theme-park"],
+      "ports": ["80:80/tcp", "443:443/tcp", "8080:8080/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/theme-park/appdata/config",
+          "container": "/config"
+        }
+      ],
+      "env":[
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "Used User ID",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Used Group ID",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "type": 1,
       "title": "Traefik",
       "description": "The Cloud-Native application proxy",
       "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:3.0)",
