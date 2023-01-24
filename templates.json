@@ -1629,7 +1629,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/theme-park.png",
       "image": "ghcr.io/gilbn/theme.park",
       "name": ["theme-park"],
-      "ports": ["80:80/tcp", "443:443/tcp", "8080:8080/tcp"],
+      "ports": ["80:80/tcp", "443:443/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
