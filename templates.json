@@ -1315,7 +1315,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Roundcube",
+      "title": "Roundcube",
       "description": "Roundcube webmail is a browser-based multilingual IMAP client with an application-like user interface.",
       "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.6.0)",
       "categories": ["mail"],
@@ -1352,8 +1352,7 @@
         {
           "name": "ROUNDCUBEMAIL_DEFAULT_PORT",
           "label": "IMAP Server Port",
-          "description": "IMAP port number",
-          "default": "143"
+          "description": "IMAP port number"
         },
         {
           "name": "ROUNDCUBEMAIL_SMTP_SERVER",
@@ -1363,34 +1362,13 @@
         {
           "name": "ROUNDCUBEMAIL_SMTP_PORT",
           "label": "SMTP Server Port",
-          "description": "SMTP port number",
-          "default": "587"
+          "description": "SMTP port number"
         },
         {
           "name": "ROUNDCUBEMAIL_PLUGINS",
           "label": "Roundcube Plugins",
           "description": "List of built-in plugins to activate.",
           "default": "archive,zipdownload"
-        },
-        {
-          "name": "ROUNDCUBEMAIL_SKIN",
-          "label": "Roundcube Skin",
-          "description": "Configures the default theme.",
-          "select": [
-            {
-              "text": "Classic",
-              "value": "classic"
-            },              
-            {
-              "text": "Elastic",
-              "value": "elastic"
-            },
-            {
-              "text": "Larry",
-              "value": "larry",
-              "default": true
-            }
-          ]
         },
         {
           "name": "ROUNDCUBEMAIL_UPLOAD_MAX_FILESIZE",
@@ -1406,7 +1384,8 @@
         {
           "name": "ROUNDCUBEMAIL_ASPELL_DICTS",
           "label": "Spellcheck dictionaries",
-          "description": "List of aspell dictionaries to install for spell checking (comma-separated, e.g. de,fr,pl)."
+          "description": "List of aspell dictionaries to install for spell checking (comma-separated, e.g. de,fr,pl).",
+          "default": "en,de"
         },
         {
           "name": "ROUNDCUBEMAIL_DB_TYPE",
@@ -1415,12 +1394,12 @@
           "select": [
             {
               "text": "SQLite",
-              "value": "sqlite",
-              "default": true
+              "value": "sqlite"
             },
             {
               "text": "MySQL",
-              "value": "mysql"
+              "value": "mysql",
+              "default": true
             },
             {
               "text": "Postgres",
@@ -1443,20 +1422,17 @@
         {
           "name": "ROUNDCUBEMAIL_DB_USER",
           "label": "Database User",
-          "description": "The database username for Roundcube; defaults to root on mysql",
-          "default": "root"
+          "description": "The database username for Roundcube; defaults to root on mysql"
         },
         {
           "name": "ROUNDCUBEMAIL_DB_PASSWORD",
           "label": "Database Password",
-          "description": "The password for the database connection.",
-          "default": "password"
+          "description": "The password for the database connection."
         },
         {
           "name": "ROUNDCUBEMAIL_DB_NAME",
           "label": "Database Name",
-          "description": "The database name for Roundcube to use; defaults to roundcubemail",
-          "default": "roundcubedb"
+          "description": "The database name for Roundcube to use; defaults to roundcubemail"
         }
       ]
     },
