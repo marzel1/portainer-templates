@@ -166,25 +166,6 @@
     },
     {
       "type": 1,
-      "title": "Dashy",
-      "description": "The Ultimate Homepage for your Homelab",
-      "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:2.1.1) Requires a conf.yml file in order to work. Documentation is available <a href='https://github.com/Lissy93/dashy/blob/master/docs/configuring.md'>here</a>.",
-      "categories": ["dashboard"],
-      "platform": "linux",
-      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/dashy.png",
-      "image": "lissy93/dashy:latest",
-      "name": ["dashy"],
-      "ports": ["80:80/tcp"],
-      "restart_policy": "unless-stopped",
-      "volumes": [
-        {
-          "bind": "/docker/dashy/appdata/public/conf.yml",
-          "container": "/app/public/conf.yml"
-        }
-      ]
-    },
-    {
-      "type": 1,
       "title": "BookStack",
       "description": "BookStack is a simple, self-hosted, easy-to-use platform for organising and storing information.",
       "note": "TEMPLATE INFO:(AddedDate:20221231 - DockerVersion:22.11.1) Default login is admin@admin.com with a password of password.", 
@@ -252,7 +233,7 @@
       "title": "Bookstack",
       "description": "BookStack is a simple, self-hosted, easy-to-use platform for organising and storing information.",
       "note": "TEMPLATE INFO:(AddedDate:20221231 - DockerVersion:22.11.1) Default login is admin@admin.com with a password of password.",      
-      "categories": ["Wiki"],
+      "categories": ["wiki"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/bookstack.png",
       "repository": {
@@ -357,6 +338,25 @@
           "default": "1000"
         }
       ]      
+    },
+    {
+      "type": 1,
+      "title": "Dashy",
+      "description": "The Ultimate Homepage for your Homelab",
+      "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:2.1.1) Requires a conf.yml file in order to work. Documentation is available <a href='https://github.com/Lissy93/dashy/blob/master/docs/configuring.md'>here</a>.",
+      "categories": ["dashboard"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/dashy.png",
+      "image": "lissy93/dashy:latest",
+      "name": ["dashy"],
+      "ports": ["80:80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/dashy/appdata/public/conf.yml",
+          "container": "/app/public/conf.yml"
+        }
+      ]
     },
     {
       "type": 1,
@@ -878,7 +878,7 @@
       "title": "Nextcloud",
       "description": "Regain control over your data! Remote collaboration made easy.",
       "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:25.0.2)",
-      "categories": ["cloud", "storage"],
+      "categories": ["cloud"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/nextcloud.png",
       "image": "nextcloud",
@@ -951,7 +951,7 @@
       "title": "Nginx Proxy Manager",
       "description": "Expose your services easily and securely.",
       "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:2.9.19) Default Admin User: admin@example.com Default Password: changeme",
-      "categories": ["proxy", "webserver"],
+      "categories": ["proxy"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/nginxproxymanager.png",
       "image": "jc21/nginx-proxy-manager:latest",
@@ -1600,7 +1600,7 @@
       "title": "Theme Park",
       "description": "A collection of themes/skins for your favorite apps!",
       "note": "TEMPLATE INFO:(AddedDate:20230124 - DockerVersion:1.13.3)",
-      "categories": ["proxy"],
+      "categories": ["other"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/theme-park.png",
       "image": "ghcr.io/gilbn/theme.park",
@@ -1680,7 +1680,7 @@
       "title": "Trilium Notes",
       "description": "Trilium Notes is a hierarchical note taking application with focus on building large personal knowledge bases.",
       "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:0.58)",
-      "categories": ["proxy", "other"],
+      "categories": ["notes"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/trilium.png",
       "image": "zadam/trilium:latest",
@@ -1713,7 +1713,7 @@
       "title": "NOT-TESTED! Teleport",
       "description": "Identity-Native Infrastructure Access",
       "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:???)",
-      "categories": ["proxy", "other"],
+      "categories": ["authentication", "proxy"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/teleport.png",
       "image": "teleport:latest",
@@ -1895,7 +1895,7 @@
       "title": "Watchtower",
       "description": "A container-based solution for automating Docker container base image updates.",
       "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.5.1)",
-      "categories": ["update", "docker"],
+      "categories": ["docker"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/watchtower.png",
       "image": "containrrr/watchtower:latest",
@@ -1970,6 +1970,47 @@
         {
           "bind": "/docker/warpgate/appdata/data",
           "container": "/data"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Wordpress",
+      "description": "The WordPress rich content management system can utilize plugins, widgets, and themes.",
+      "note": "TEMPLATE INFO:(AddedDate:20230131 - DockerVersion:6.1.1)",
+      "categories": ["blog"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/wordpress.png",
+      "image": "wordpress:latest",
+      "name": ["wordpress"],
+      "ports": ["80:80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/wordpress/appdata/data",
+          "container": "/var/www/html"
+        }
+      ],
+      "env":[
+        {
+          "name": "WORDPRESS_DB_USER",
+          "label": "Database User",
+          "description": "The database user"
+        },
+        {
+          "name": "WORDPRESS_DB_PASSWORD",
+          "label": "Database  Password",
+          "description": "The database password"
+        },
+        {
+          "name": "WORDPRESS_DB_HOST",
+          "label": "Database Host",
+          "description": "The database host"
+        },
+        {
+          "name": "WORDPRESS_DB_NAME",
+          "label": "Database Name",
+          "description": "The database to be used"
         }
       ]
     }
