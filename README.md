@@ -4,9 +4,10 @@ This repository hosts my Portainer **templates.json**.
 
 For more information about the template definition format and how to deploy your own templates, see the [relevant documentation section](https://docs.portainer.io/advanced/app-templates).
 
+
 Each template has an info in the notes when it was added and which was the current Docker version at that date.
 
-    `TEMPLATE INFO:(AddedDate:20230101 - DockerVersion:x.x.x)`
+    TEMPLATE INFO:(AddedDate:20230101 - DockerVersion:x.x.x)
 
 ### App List
 
@@ -20,7 +21,7 @@ Each template has an info in the notes when it was added and which was the curre
 - [Gitea](https://gitea.io/)
 - [Gitlab](https://about.gitlab.com/)
 - [Grafana](https://grafana.com/)
-- [Guacamole]https://guacamole.apache.org/)
+- [Guacamole](https://guacamole.apache.org/)
 - [Homer](https://github.com/bastienwirtz/homer)
 - [MariaDB](https://mariadb.org/)
 - [Nextcloud](https://nextcloud.com/)
