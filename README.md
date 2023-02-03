@@ -11,6 +11,7 @@ Each template has an info in the notes when it was added and which was the curre
 
 ### App List
 
+- [Adminer](https://www.adminer.org/)
 - [Authelia](https://www.authelia.com/)
 - [Authentik](https://goauthentik.io/)
 - [Bookstack](https://www.bookstackapp.com/)
