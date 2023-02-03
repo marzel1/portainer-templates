@@ -2,6 +2,31 @@
   "version": "2",
   "templates": [
     {
+      "type": 1,
+      "title": "Adminer",
+      "description": "BookStack is a simple, self-hosted, easy-to-use platform for organising and storing information.",
+      "note": "TEMPLATE INFO:(AddedDate:20230203 - DockerVersion:4.8.1) Default login is admin@admin.com with a password of password.", 
+      "categories": ["database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/adminer.png",
+      "image": "adminer:latest",
+      "name": ["adminer"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "env":[
+        {
+          "name": "ADMINER_DEFAULT_SERVER",
+          "label": "Database Host",
+          "description": "The database host"
+        },
+        {
+          "name": "ADMINER_DESIGN",
+          "label": "Adminer Theme",
+          "description": "The Adminer Theme"
+        }
+      ] 
+    },
+    {
       "type": 3,
       "title": "NOT-TESTED! Authelia",
       "description": "Authelia is an open-source authentication and authorization server and portal fulfilling the identity and access management (IAM) role of information security in providing multi-factor authentication and single sign-on (SSO) for your applications via a web portal. It acts as a companion for common reverse proxies.",
