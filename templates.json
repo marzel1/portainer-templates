@@ -647,7 +647,7 @@
       "categories": ["database"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/elasticsearch.png",
-      "image": "elasticsearch:latest",
+      "image": "elasticsearch:8.6.1",
       "name": ["elasticsearch"],
       "ports": ["9200/tcp"],
       "restart_policy": "unless-stopped"
