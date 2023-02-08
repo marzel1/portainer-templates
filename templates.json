@@ -641,6 +641,19 @@
     },
     {
       "type": 1,
+      "title": "Elasticsearch",
+      "description": "Elasticsearch is a distributed, RESTful search and analytics engine capable of solving a growing number of use cases.",
+      "note": "TEMPLATE INFO:(AddedDate:20230208 - DockerVersion:8.6.1)", 
+      "categories": ["database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/elasticsearch.png",
+      "image": "elasticsearch:latest",
+      "name": ["elasticsearch"],
+      "ports": ["9200/tcp"],
+      "restart_policy": "unless-stopped"
+    },
+    {
+      "type": 1,
       "title": "Gitea",
       "description": "Gitea: Git with a cup of tea - A painless self-hosted Git service.",
       "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:1.18.0)",

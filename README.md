@@ -19,6 +19,7 @@ Each template has an info in the notes when it was added and which was the curre
 - [Dashy](https://dashy.to/)
 - [DB-Backup](https://github.com/tiredofit/docker-db-backup)
 - [Duplicati](https://www.duplicati.com/)
+- [Elasticsearch](https://www.elastic.co/elasticsearch/)
 - [Gitea](https://gitea.io/)
 - [Gitlab](https://about.gitlab.com/)
 - [Grafana](https://grafana.com/)
