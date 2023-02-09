@@ -21,7 +21,7 @@ Each template has an info in the notes when it was added and which was the curre
 - [DB-Backup](https://github.com/tiredofit/docker-db-backup)
 - [Duplicati](https://www.duplicati.com/)
 - [Elasticsearch](https://www.elastic.co/elasticsearch/)
-- [Emby] (https://emby.media/)
+- [Emby](https://emby.media/)
 - [Gitea](https://gitea.io/)
 - [Gitlab](https://about.gitlab.com/)
 - [Grafana](https://grafana.com/)
