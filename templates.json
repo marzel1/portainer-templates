@@ -22,18 +22,6 @@
           "bind": "/docker/adguard/appdata/conf",
           "container": "/opt/adguardhome/conf"
         }
-      ],
-      "env":[
-        {
-          "name": "ADMINER_DEFAULT_SERVER",
-          "label": "Database Host",
-          "description": "The database host"
-        },
-        {
-          "name": "ADMINER_DESIGN",
-          "label": "Adminer Theme",
-          "description": "The Adminer Theme"
-        }
       ] 
     },
     {
