@@ -11,6 +11,7 @@ Each template has an info in the notes when it was added and which was the curre
 
 ### App List
 
+- [AdGuard](https://adguard.com/en/adguard-home/overview.html)
 - [Adminer](https://www.adminer.org/)
 - [Authelia](https://www.authelia.com/)
 - [Authentik](https://goauthentik.io/)
@@ -20,17 +21,20 @@ Each template has an info in the notes when it was added and which was the curre
 - [DB-Backup](https://github.com/tiredofit/docker-db-backup)
 - [Duplicati](https://www.duplicati.com/)
 - [Elasticsearch](https://www.elastic.co/elasticsearch/)
+- [Emby] (https://emby.media/)
 - [Gitea](https://gitea.io/)
 - [Gitlab](https://about.gitlab.com/)
 - [Grafana](https://grafana.com/)
 - [Guacamole](https://guacamole.apache.org/)
 - [Homer](https://github.com/bastienwirtz/homer)
+- [Jellyfin](https://jellyfin.org/)
 - [MariaDB](https://mariadb.org/)
 - [Nextcloud](https://nextcloud.com/)
 - [Nginx](https://nginx.org/)
 - [NginxProxyManager](https://nginxproxymanager.com/)
 - [pgAdmin](https://www.pgadmin.org/)
 - [phpMyAdmin](https://www.phpmyadmin.net/)
+- [Pi-Hole](https://pi-hole.net/)
 - [Plex](https://www.plex.tv/)
 - [Portainer](https://www.portainer.io/)
 - [Postgres](https://www.postgresql.org/)
@@ -47,3 +51,4 @@ Each template has an info in the notes when it was added and which was the curre
 - [Watchtower](https://containrrr.dev/watchtower/)
 - [Warpgate](https://github.com/warp-tech/warpgate)
 - [Wordpress](https://wordpress.org/)
+- [Yacht](https://yacht.sh/)

@@ -3,9 +3,44 @@
   "templates": [
     {
       "type": 1,
+      "title": "AdGuard",
+      "description": "Free and open source, powerful network-wide ads & trackers blocking DNS server.",
+      "note": "TEMPLATE INFO:(AddedDate:20230209 - DockerVersion:0.107.23) Documentation is available <a href='https://hub.docker.com/r/adguard/adguardhome'>here</a>.", 
+      "categories": ["ad-blocker"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/adguardhome.png",
+      "image": "adguard/adguardhome:latest",
+      "name": ["adguard"],
+      "ports": ["53/tcp","53/udp","67/tcp","68/tcp","68/udp","80/tcp","443/tcp","443/udp","784/udp","853/tcp","853/udp","3000/tcp","5443/tcp","5443/udp","8853/udp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/adguard/appdata/work",
+          "container": "/opt/adguardhome/work"
+        },
+        {
+          "bind": "/docker/adguard/appdata/conf",
+          "container": "/opt/adguardhome/conf"
+        }
+      ],
+      "env":[
+        {
+          "name": "ADMINER_DEFAULT_SERVER",
+          "label": "Database Host",
+          "description": "The database host"
+        },
+        {
+          "name": "ADMINER_DESIGN",
+          "label": "Adminer Theme",
+          "description": "The Adminer Theme"
+        }
+      ] 
+    },
+    {
+      "type": 1,
       "title": "Adminer",
-      "description": "BookStack is a simple, self-hosted, easy-to-use platform for organising and storing information.",
-      "note": "TEMPLATE INFO:(AddedDate:20230203 - DockerVersion:4.8.1) Default login is admin@admin.com with a password of password.", 
+      "description": "Adminer is a tool for managing content in databases. It natively supports MySQL, MariaDB, PostgreSQL, SQLite, MS SQL, Oracle, Elasticsearch and MongoDB.",
+      "note": "TEMPLATE INFO:(AddedDate:20230203 - DockerVersion:4.8.1)", 
       "categories": ["database"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/adminer.png",
@@ -28,7 +63,7 @@
     },
     {
       "type": 3,
-      "title": "NOT-TESTED! Authelia",
+      "title": "Authelia",
       "description": "Authelia is an open-source authentication and authorization server and portal fulfilling the identity and access management (IAM) role of information security in providing multi-factor authentication and single sign-on (SSO) for your applications via a web portal. It acts as a companion for common reverse proxies.",
       "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:4.37.5) Requires a configuration.yml file in order to work. Documentation is available <a href='https://docs.authelia.com/deployment/deployment-ha'>here</a>.",
       "categories": ["authentication"],
@@ -374,7 +409,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/dashy.png",
       "image": "lissy93/dashy:latest",
       "name": ["dashy"],
-      "ports": ["80:80/tcp"],
+      "ports": ["80/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -602,7 +637,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/duplicati.png",
       "image": "linuxserver/duplicati:latest",
       "name": ["duplicati"],
-      "ports": ["8200:8200/tcp"],
+      "ports": ["8200/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -643,7 +678,7 @@
       "type": 1,
       "title": "Elasticsearch",
       "description": "Elasticsearch is a distributed, RESTful search and analytics engine capable of solving a growing number of use cases.",
-      "note": "TEMPLATE INFO:(AddedDate:20230208 - DockerVersion:8.6.1)", 
+      "note": "TEMPLATE INFO:(AddedDate:20230208 - DockerVersion:8.6.1) Requires at least 4Gb of RAM.", 
       "categories": ["database"],
       "platform": "linux",
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/elasticsearch.png",
@@ -651,6 +686,44 @@
       "name": ["elasticsearch"],
       "ports": ["9200/tcp"],
       "restart_policy": "unless-stopped"
+    },
+    {
+      "type": 1,
+      "title": "Emby",
+      "description": "",
+      "note": "TEMPLATE INFO:(AddedDate:20230209 - DockerVersion:4.7.11.0)", 
+      "categories": ["media"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/emby.png",
+      "image": "emby/embyserver:latest",
+      "name": ["emby"],
+      "network": "host",
+      "ports": ["8096/tcp","8920/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/emby/appdata/config",
+          "container": "/config"
+        },
+        {
+          "bind": "/docker/emby/appdata/media",
+          "container": "/mnt/media"
+        }
+      ],
+      "env":[
+        {
+          "name": "UID",
+          "label": "UID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "GID",
+          "label": "GID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]
     },
     {
       "type": 1,
@@ -662,7 +735,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/gitea.png",
       "image": "gitea/gitea:latest",
       "name": ["gitea"],
-      "ports": ["22:22/tcp", "3000:3000/tcp"],
+      "ports": ["22/tcp","3000/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -673,7 +746,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Gitlab",
+      "title": "Gitlab",
       "description": "From planning to production, GitLab brings teams together to shorten cycle times, reduce costs, strengthen security, and increase developer productivity.",
       "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:15.7.0)",
       "categories": ["git"],
@@ -681,7 +754,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/gitlab.png",
       "image": "gitlab/gitlab-ce:latest",
       "name": ["gitlab"],
-      "ports": ["22:22/tcp", "9080:9080/tcp","9443:9443/tcp"],
+      "ports": ["22/tcp","9080/tcp","9443/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -708,7 +781,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/grafana.png",
       "image": "grafana/grafana:latest",
       "name": ["grafana"],
-      "ports": ["3000:3000/tcp"],
+      "ports": ["3000/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -731,7 +804,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Guacd",
+      "title": "Guacd",
       "description": "Guacd is the native server-side proxy used by the Apache Guacamole web application. If you wish to deploy Guacamole, or an application using the Guacamole core APIs, you will need a copy of guacd running.",
       "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:1.4.0)",
       "categories": ["remote"],
@@ -761,7 +834,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Guacamole",
+      "title": "Guacamole",
       "description": "Apache Guacamole is a clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH.",
       "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:1.4.0)",
       "categories": ["remote"],
@@ -769,7 +842,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/guacamole.png",
       "image": "guacamole/guacamole:latest",
       "name": ["guacamole"],
-      "ports": ["8080:8080/tcp"],
+      "ports": ["8080/tcp"],
       "restart_policy": "unless-stopped",
       "env":[
         {
@@ -819,7 +892,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/heimdall-light.png",
       "image": "linuxserver/heimdall:latest",
       "name": ["heimdall"],
-      "ports": ["80:80/tcp", "443:443/tcp"],
+      "ports": ["80/tcp", "443/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -858,12 +931,50 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/homer.png",
       "image": "b4bz/homer:latest",
       "name": ["homer"],
-      "ports": ["8080:8080/tcp"],
+      "ports": ["8080/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
           "bind": "/docker/homer/appdata/assets",
           "container": "/www/assets"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Jellyfin",
+      "description": "",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:22.11.2)",
+      "categories": ["media"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/jellyfin.png",
+      "image": "jellyfin/jellyfin:latest",
+      "name": ["jellyfin"],
+      "ports": ["8080/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/jellyfin/appdata/config",
+          "container": "/config"
+        },
+        {
+          "bind": "/docker/jellyfin/appdata/cache",
+          "container": "/cache"
+        },
+        {
+          "bind": "/docker/jellyfin/appdata/media",
+          "container": "/media"
+        },
+        {
+          "bind": "/docker/jellyfin/appdata/media2",
+          "container": "/media2"
+        }
+      ],
+      "env": [
+        {
+          "name": "JELLYFIN_PublishedServerUrl",
+          "label": "Jellyfin URL",
+          "description": "Set the URL for Jellyfin"
         }
       ]
     },
@@ -921,7 +1032,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/nextcloud.png",
       "image": "nextcloud",
       "name": ["nextcloud"],
-      "ports": ["80:80/tcp"],
+      "ports": ["80/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -994,7 +1105,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/nginxproxymanager.png",
       "image": "jc21/nginx-proxy-manager:latest",
       "name": ["nginxproxymanager"],
-      "ports": ["81:81/tcp","80:80/tcp","443:443/tcp","3000:3000/tcp"],
+      "ports": ["81/tcp","80/tcp","443/tcp","3000/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -1025,7 +1136,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/postgres.png",
       "image": "dpage/pgadmin4:latest",
       "name": ["pgadmin4"],
-      "ports": ["80:80/tcp","443:443/tcp"],
+      "ports": ["80/tcp","443/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -1056,7 +1167,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/phpmyadmin.png",
       "image": "linuxserver/phpmyadmin:latest",
       "name": ["phpmyadmin"],
-      "ports": ["80:80/tcp"],
+      "ports": ["80/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -1113,7 +1224,43 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Plex Media Server",
+      "title": "Pi-Hole",
+      "description": "The Pi-hole is a DNS sinkhole that protects your devices from unwanted content without installing any client-side software.",
+      "note": "TEMPLATE INFO:(AddedDate:20230209 - DockerVersion:2023.01.10) Default URL is: http://pi.hole/admin",
+      "categories": ["ad-blocker"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/pihole.png",
+      "image": "pihole/pihole:latest",
+      "name": ["pihole"],
+      "ports": ["53/tcp","53/udp","67/udp","80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/pihole/appdata/pihole",
+          "container": "/etc/pihole"
+        },
+        {
+          "bind": "/docker/pihole/appdata/dnsmasq.d",
+          "container": "/etc/dnsmasq.d"
+        }
+      ],
+      "env": [
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "WEBPASSWORD",
+          "label": "Password",
+          "description": "Initial Admin password."
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Plex Media Server",
       "description": "Watch anytime, anywhere with the Plex app.",
       "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:1.30.0)",
       "categories": ["media"],
@@ -1186,7 +1333,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/portainer.png",
       "image": "portainer/templates:latest",
       "name": ["portainer-templates"],
-      "ports": ["80:80/tcp"],
+      "ports": ["80/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -1205,6 +1352,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/postgres.png",
       "image": "postgres:15.1-alpine",
       "name": ["postgres15.1"],
+      "ports": ["5432/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -1235,6 +1383,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/postgres.png",
       "image": "postgres:14.6-alpine",
       "name": ["postgres14.6"],
+      "ports": ["5432/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -1265,6 +1414,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/postgres.png",
       "image": "postgres:13.9-alpine",
       "name": ["postgres13.9"],
+      "ports": ["5432/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -1295,6 +1445,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/postgres.png",
       "image": "postgres:12.13-alpine",
       "name": ["postgres12.13"],
+      "ports": ["5432/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -1325,7 +1476,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/prometheus.png",
       "image": "prom/prometheus:latest",
       "name": ["prometheus"],
-      "ports": ["9090:9090/tcp"],
+      "ports": ["9090/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -1348,7 +1499,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/redis.png",
       "image": "redis:latest",
       "name": ["redis"],
-      "ports": ["6379:6379/tcp"],
+      "ports": ["6379/tcp"],
       "restart_policy": "unless-stopped"
     },
     {
@@ -1361,7 +1512,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/roundcube.png",
       "image": "roundcube/roundcubemail:latest",
       "name": ["roundcube"],
-      "ports": ["80:80/tcp"],
+      "ports": ["80/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -1484,7 +1635,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/speedtest-tracker.png",
       "image": "henrywhitaker3/speedtest-tracker:latest",
       "name": ["speedtest-tracker"],
-      "ports": ["80:80/tcp"],
+      "ports": ["80/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -1560,7 +1711,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/speedtest-tracker.png",
       "image": "ghcr.io/alexjustesen/speedtest-tracker:latest",
       "name": ["speedtest-tracker2"],
-      "ports": ["80:80/tcp", "443:443/tcp"],
+      "ports": ["80/tcp", "443/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -1643,7 +1794,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/theme-park.png",
       "image": "ghcr.io/gilbn/theme.park",
       "name": ["theme-park"],
-      "ports": ["80:80/tcp", "443:443/tcp"],
+      "ports": ["80/tcp", "443/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -1682,7 +1833,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/traefik.png",
       "image": "traefik:latest",
       "name": ["traefik"],
-      "ports": ["80:80/tcp", "443:443/tcp", "8080:8080/tcp"],
+      "ports": ["80/tcp", "443/tcp", "8080/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -1723,7 +1874,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/trilium.png",
       "image": "zadam/trilium:latest",
       "name": ["trilium"],
-      "ports": ["80:80/tcp"],
+      "ports": ["80/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -1748,7 +1899,7 @@
     },
     {
       "type": 1,
-      "title": "NOT-TESTED! Teleport",
+      "title": "Teleport",
       "description": "Identity-Native Infrastructure Access",
       "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:???)",
       "categories": ["authentication", "proxy"],
@@ -1756,7 +1907,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/teleport.png",
       "image": "teleport:latest",
       "name": ["teleport"],
-      "ports": ["80:80/tcp"],
+      "ports": ["80/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -1775,7 +1926,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/bitwarden.png",
       "image": "vaultwarden/server:latest",
       "name": ["vaultwarden"],
-      "ports": ["80:80/tcp"],
+      "ports": ["80/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -2002,7 +2153,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/warpgate.svg",
       "image": "ghcr.io/warp-tech/warpgate:latest",
       "name": ["warpgate"],
-      "ports": ["2222:2222/tcp", "8888:8888/tcp"],
+      "ports": ["2222/tcp", "8888/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -2021,7 +2172,7 @@
       "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/wordpress.png",
       "image": "wordpress:latest",
       "name": ["wordpress"],
-      "ports": ["80:80/tcp"],
+      "ports": ["80/tcp"],
       "restart_policy": "unless-stopped",
       "volumes": [
         {
@@ -2049,6 +2200,29 @@
           "name": "WORDPRESS_DB_NAME",
           "label": "Database Name",
           "description": "The database to be used"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Yacht",
+      "description": "Yacht is a container management UI with a focus on templates and 1-click deployments.",
+      "note": "TEMPLATE INFO:(AddedDate:20230209 - DockerVersion:2023-01-12--05)",
+      "categories": ["docker"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/yacht.png",
+      "image": "selfhostedpro/yacht:latest",
+      "name": ["yacht"],
+      "ports": ["8000/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/yacht/appdata/config",
+          "container": "/config"
+        },
+        {
+          "bind": "/var/run/docker.sock",
+          "container": "/var/run/docker.sock"
         }
       ]
     }
