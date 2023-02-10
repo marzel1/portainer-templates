@@ -40,6 +40,7 @@ Each template has an info in the notes when it was added and which was the curre
 - [Postgres](https://www.postgresql.org/)
 - [Prometheus](https://prometheus.io/)
 - [Redis](https://redis.io/)
+- [Remotely](https://github.com/immense/Remotely)
 - [Roundcube](https://roundcube.net/)
 - [SpeedtestTracker](https://github.com/henrywhitaker3/Speedtest-Tracker)
 - [SpeedtestTracker2](https://github.com/alexjustesen/speedtest-tracker)

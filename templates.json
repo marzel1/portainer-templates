@@ -1492,6 +1492,25 @@
     },
     {
       "type": 1,
+      "title": "Remotely",
+      "description": "A remote control and remote scripting solution, built with .NET 6, Blazor, and SignalR Core.",
+      "note": "TEMPLATE INFO:(AddedDate:20230210 - DockerVersion:1375) For first run, create your account by clicking the Register button on the main page.This account will be both the server admin and organization admin.",
+      "categories": ["remote"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/remotely.png",
+      "image": "immybot/remotely:latest",
+      "name": ["remotely"],
+      "ports": ["5000/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/remotely/appdata/data",
+          "container": "/remotely-data"
+        }
+      ]
+    },
+    {
+      "type": 1,
       "title": "Roundcube",
       "description": "Roundcube webmail is a browser-based multilingual IMAP client with an application-like user interface.",
       "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.6.0)",
