@@ -41,6 +41,7 @@ Each template has an info in the notes when it was added and which was the curre
 - [Pi-Hole](https://pi-hole.net/)
 - [Plex](https://www.plex.tv/)
 - [Portainer](https://www.portainer.io/)
+- [Portainer Template](https://docs.portainer.io/advanced/app-templates)
 - [Postgres](https://www.postgresql.org/)
 - [Prometheus](https://prometheus.io/)
 - [Redis](https://redis.io/)
@@ -64,14 +65,14 @@ Each template has an info in the notes when it was added and which was the curre
 <details><summary>Categories App List</summary>
 <p>
 
-    <details><summary>Ad-Blocker</summary>
-    <p>
+<details><summary>Ad-Blocker</summary>
+<p>
 
-    - [AdGuard](https://adguard.com/en/adguard-home/overview.html)
-    - [Pi-Hole](https://pi-hole.net/)
+- [AdGuard](https://adguard.com/en/adguard-home/overview.html)
+- [Pi-Hole](https://pi-hole.net/)
 
-    </p>
-    </details>
+</p>
+</details>
 
 <details><summary>Authentication</summary>
 <p>
