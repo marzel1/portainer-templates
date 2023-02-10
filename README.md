@@ -64,14 +64,14 @@ Each template has an info in the notes when it was added and which was the curre
 <details><summary>Categories App List</summary>
 <p>
 
-<details><summary>Ad-Blocker</summary>
-<p>
+    <details><summary>Ad-Blocker</summary>
+    <p>
 
-- [AdGuard](https://adguard.com/en/adguard-home/overview.html)
-- [Pi-Hole](https://pi-hole.net/)
+    - [AdGuard](https://adguard.com/en/adguard-home/overview.html)
+    - [Pi-Hole](https://pi-hole.net/)
 
-</p>
-</details>
+    </p>
+    </details>
 
 <details><summary>Authentication</summary>
 <p>
@@ -143,16 +143,6 @@ Each template has an info in the notes when it was added and which was the curre
 </p>
 </details>
 
-<details><summary>Tools</summary>
-<p>
-
-- [CodeServer](https://coder.com/)
-- [Roundcube](https://roundcube.net/)
-- [TriliumNotes](https://github.com/zadam/trilium)
-
-</p>
-</details>
-
 <details><summary>Git</summary>
 <p>
 
@@ -208,13 +198,23 @@ Each template has an info in the notes when it was added and which was the curre
 </p>
 </details>
 
-<details><summary>Proxy</summary>
+<details><summary>Remote</summary>
 <p>
 
 - [Guacamole](https://guacamole.apache.org/)
 - [Remotely](https://github.com/immense/Remotely)
 - [Teleport](https://goteleport.com/)
 - [Warpgate](https://github.com/warp-tech/warpgate)
+
+</p>
+</details>
+
+<details><summary>Tools</summary>
+<p>
+
+- [CodeServer](https://coder.com/)
+- [Roundcube](https://roundcube.net/)
+- [TriliumNotes](https://github.com/zadam/trilium)
 
 </p>
 </details>
