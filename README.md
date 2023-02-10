@@ -31,6 +31,7 @@ Each template has an info in the notes when it was added and which was the curre
 - [Guacamole](https://guacamole.apache.org/)
 - [Heimdall](https://heimdall.site/)
 - [Homer](https://github.com/bastienwirtz/homer)
+- [Jump](https://github.com/daledavies/jump)
 - [Jellyfin](https://jellyfin.org/)
 - [MariaDB](https://mariadb.org/)
 - [Nextcloud](https://nextcloud.com/)
@@ -115,6 +116,7 @@ Each template has an info in the notes when it was added and which was the curre
 - [Dashy](https://dashy.to/)
 - [Heimdall](https://heimdall.site/)
 - [Homer](https://github.com/bastienwirtz/homer)
+- [Jump](https://github.com/daledavies/jump)
 
 </p>
 </details>
