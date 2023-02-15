@@ -715,6 +715,36 @@
     },
     {
       "type": 1,
+      "title": "Flame",
+      "description": "",
+      "note": "TEMPLATE INFO:(AddedDate:20230215 - DockerVersion:2.3.0)",
+      "categories": ["Dashboard"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/flame.png",
+      "image": "pawelmalak/flame:latest",
+      "name": ["flame"],
+      "ports": ["5005/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/flame/appdata/data",
+          "container": "/app/data"
+        },
+        {
+          "bind": "/var/run/docker.sock",
+          "container": "/var/run/docker.sock"
+        }
+      ],
+      "env":[
+        {
+          "name": "PASSWORD",
+          "label": "Password",
+          "description": "Flame Password"
+        }
+      ]
+    },
+    {
+      "type": 1,
       "title": "Gitea",
       "description": "Gitea: Git with a cup of tea - A painless self-hosted Git service.",
       "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:1.18.0)",
@@ -895,6 +925,66 @@
           "description": "Specify a timezone to use",
           "default": "Europe/Berlin"
         },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Homarr",
+      "description": "",
+      "note": "TEMPLATE INFO:(AddedDate:20230215 - DockerVersion:0.11.4)",
+      "categories": ["Dashboard"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/homarr.png",
+      "image": "ghcr.io/ajnart/homarr:latest",
+      "name": ["homarr"],
+      "ports": ["7575/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/homer/appdata/configs",
+          "container": "/app/data/configs"
+        },
+        {
+          "bind": "/docker/homer/appdata/icons",
+          "container": "/app/public/icons"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Homepage",
+      "description": "A modern (fully static, fast), secure (fully proxied), highly customizable application dashboard with integrations for more than 25 services and translations for over 15 languages. Easily configured via YAML files (or discovery via docker labels).",
+      "note": "TEMPLATE INFO:(AddedDate:20230215 - DockerVersion:0.6.7)",
+      "categories": ["Dashboard"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/homepage.png",
+      "image": "ghcr.io/benphelps/homepage:latest",
+      "name": ["homepage"],
+      "ports": ["3000/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/homepage/appdata/config",
+          "container": "/app/config"
+        },
+        {
+          "bind": "/var/run/docker.sock",
+          "container": "/var/run/docker.sock"
+        }
+      ],
+      "env":[
         {
           "name": "PUID",
           "label": "PUID",
@@ -1279,6 +1369,25 @@
         {
           "bind": "/docker/nginxproxymanager/appdata/logs",
           "container": "/data/var/logs"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "Organizr",
+      "description": "",
+      "note": "TEMPLATE INFO:(AddedDate:20230215 - DockerVersion:2.9.19)",
+      "categories": ["Dashboard"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/organizr.png",
+      "image": "organizr/organizr:latest",
+      "name": ["organizr"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/organizr/appdata/config",
+          "container": "/config"
         }
       ]
     },

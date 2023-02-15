@@ -25,11 +25,14 @@ Each template has an info in the notes when it was added and which was the curre
 - [Duplicati](https://www.duplicati.com/)
 - [Elasticsearch](https://www.elastic.co/elasticsearch/)
 - [Emby](https://emby.media/)
+- [Flame](https://github.com/pawelmalak/flame)
 - [Gitea](https://gitea.io/)
 - [Gitlab](https://about.gitlab.com/)
 - [Grafana](https://grafana.com/)
 - [Guacamole](https://guacamole.apache.org/)
 - [Heimdall](https://heimdall.site/)
+- [Homarr](https://homarr.dev/)
+- [Homepage](https://gethomepage.dev/)
 - [Homer](https://github.com/bastienwirtz/homer)
 - [Jump](https://github.com/daledavies/jump)
 - [Jellyfin](https://jellyfin.org/)
@@ -37,6 +40,7 @@ Each template has an info in the notes when it was added and which was the curre
 - [Nextcloud](https://nextcloud.com/)
 - [Nginx](https://nginx.org/)
 - [NginxProxyManager](https://nginxproxymanager.com/)
+- [Organizr](https://github.com/causefx/Organizr/)
 - [pgAdmin](https://www.pgadmin.org/)
 - [phpMyAdmin](https://www.phpmyadmin.net/)
 - [Pi-Hole](https://pi-hole.net/)
@@ -114,9 +118,13 @@ Each template has an info in the notes when it was added and which was the curre
 <p>
 
 - [Dashy](https://dashy.to/)
+- [Flame](https://github.com/pawelmalak/flame)
 - [Heimdall](https://heimdall.site/)
+- [Homarr](https://homarr.dev/)
+- [Homepage](https://gethomepage.dev/)
 - [Homer](https://github.com/bastienwirtz/homer)
 - [Jump](https://github.com/daledavies/jump)
+- [Organizr](https://github.com/causefx/Organizr/)
 
 </p>
 </details>
