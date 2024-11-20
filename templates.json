@@ -1,0 +1,2590 @@
+{
+  "version": "3",
+  "templates": [
+    {
+      "id": 1,
+	  "type": 1,
+      "title": "AdGuard",
+      "description": "Free and open source, powerful network-wide ads & trackers blocking DNS server.",
+      "note": "TEMPLATE INFO:(AddedDate:20230209 - DockerVersion:0.107.23) Documentation is available <a href='https://hub.docker.com/r/adguard/adguardhome'>here</a>.", 
+      "categories": ["Ad-Blocker"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/adguardhome.png",
+      "image": "adguard/adguardhome:latest",
+      "name": ["adguard"],
+      "ports": ["53/tcp","53/udp","67/tcp","68/tcp","68/udp","80/tcp","443/tcp","443/udp","784/udp","853/tcp","853/udp","3000/tcp","5443/tcp","5443/udp","8853/udp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/adguard/appdata/work",
+          "container": "/opt/adguardhome/work"
+        },
+        {
+          "bind": "/docker/adguard/appdata/conf",
+          "container": "/opt/adguardhome/conf"
+        }
+      ] 
+    },
+    {
+      "id": 2,
+	  "type": 1,
+      "title": "Adminer",
+      "description": "Adminer is a tool for managing content in databases. It natively supports MySQL, MariaDB, PostgreSQL, SQLite, MS SQL, Oracle, Elasticsearch and MongoDB.",
+      "note": "TEMPLATE INFO:(AddedDate:20230203 - DockerVersion:4.8.1)", 
+      "categories": ["Database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/adminer.png",
+      "image": "adminer:latest",
+      "name": ["adminer"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "env":[
+        {
+          "name": "ADMINER_DEFAULT_SERVER",
+          "label": "Database Host",
+          "description": "The database host"
+        },
+        {
+          "name": "ADMINER_DESIGN",
+          "label": "Adminer Theme",
+          "description": "The Adminer Theme"
+        }
+      ] 
+    },
+    {
+      "id": 3,
+	  "type": 3,
+      "title": "Authelia",
+      "description": "Authelia is an open-source authentication and authorization server and portal fulfilling the identity and access management (IAM) role of information security in providing multi-factor authentication and single sign-on (SSO) for your applications via a web portal. It acts as a companion for common reverse proxies.",
+      "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:4.37.5) Requires a configuration.yml file in order to work. Documentation is available <a href='https://docs.authelia.com/deployment/deployment-ha'>here</a>.",
+      "categories": ["Authentication"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/authelia.png",
+      "repository": {
+        "stackfile": "stacks/authelia.yml",
+        "url": "https://github.com/marzel1/portainer-templates"
+      },
+      "env": [
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "id": 4,
+	  "type": 3,
+      "title": "Authentik",
+      "description": "Authentik is an open-source Identity Provider focused on flexibility and versatility.",
+      "note": "TEMPLATE INFO:(AddedDate:20230112 - DockerVersion:2022.12.2) To start the initial setup, navigate to https://<your server>/if/flow/initial-setup/. There you will be prompted to set a password for the akadmin user.",
+      "categories": ["Authentication"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/authentik-orange.png",
+      "repository": {
+        "stackfile": "stacks/authentik.yml",
+        "url": "https://github.com/marzel1/portainer-templates"
+      },
+      "env": [
+        {
+          "name": "PG_USER",
+          "label": "Database User",
+          "description": "The database user",
+          "default": "authentik"
+        },
+        {
+          "name": "PG_PASS",
+          "label": "Database Password",
+          "description": "Specify a database password to use"
+        },
+        {
+          "name": "PG_DB",
+          "label": "Database Name",
+          "description": "Name of the Database.",
+          "default": "authentik"
+        },
+        {
+          "name": "AUTH_SECRET_KEY",
+          "label": "Authentik Secret Key",
+          "description": "Secret Key need to be 50 characters long."
+        },
+        {
+          "name": "AUTH_EMAIL__HOST",
+          "label": "Authentik Email Host",
+          "description": "Email Host Server",
+          "default": "localhost"
+        },
+        {
+          "name": "AUTH_EMAIL__PORT",
+          "label": "Authentik Email Port",
+          "description": "Email Host Server Port",
+          "default": "25"
+        },
+        {
+          "name": "AUTH_EMAIL__USERNAME",
+          "label": "Authentik Email Username",
+          "description": "Email Server User"
+        },
+        {
+          "name": "AUTH_EMAIL__PASSWORD",
+          "label": "Authentik Email Password",
+          "description": "Email Server Password"
+        },
+        {
+          "name": "AUTH_EMAIL__USE_TLS",
+          "label": "Authentik Email use TLS",
+          "description": "If TLS should be used.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"              
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "AUTH_EMAIL__USE_SSL",
+          "label": "Authentik Email use SSL",
+          "description": "If SSL should be used.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"              
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "AUTH_EMAIL__TIMEOUT",
+          "label": "Authentik Email Timeout",
+          "description": "Email Timeout",
+          "default": "10"
+        },
+        {
+          "name": "AUTH_EMAIL__FROM",
+          "label": "Authentik Email From",
+          "description": "Use Email Address to sent the Mail."
+        },
+        {
+          "name": "AUTH_PORT_HTTP",
+          "label": "Authentik Port HTTP",
+          "description": "Used HTTP Port.",
+          "default": "9000"
+        },
+        {
+          "name": "AUTH_PORT_HTTPS",
+          "label": "Authentik Port HTTPS",
+          "description": "Used HTTPS Port.",
+          "default": "9443"
+        },
+        {
+          "name": "AUTH_ERROR_REPORTING__ENABLED",
+          "label": "Authentik Error Reporting",
+          "description": "If Error Reporting should be used.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"              
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+	  "type": 1,
+      "title": "BookStack",
+      "description": "BookStack is a simple, self-hosted, easy-to-use platform for organising and storing information.",
+      "note": "TEMPLATE INFO:(AddedDate:20221231 - DockerVersion:22.11.1) Default login is admin@admin.com with a password of password.", 
+      "categories": ["Wiki"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/bookstack.png",
+      "image": "linuxserver/bookstack:latest",
+      "name": ["bookstack"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/bookstack/appdata/config",
+          "container": "/config"
+        }
+      ],
+      "env":[
+        {
+          "name": "DB_USER",
+          "label": "Database User",
+          "description": "The database user"
+        },
+        {
+          "name": "DB_PASS",
+          "label": "Database  Password",
+          "description": "The database password"
+        },
+        {
+          "name": "DB_HOST",
+          "label": "Database Host",
+          "description": "The database host"
+        },
+        {
+          "name": "DB_DATABASE",
+          "label": "Database Name",
+          "description": "The database to be used"
+        },
+        {
+          "name": "APP_URL",
+          "label": "Application URL",
+          "description": "The url your application will be accessed on (required for correct operation of reverse proxy)"
+        },
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ] 
+    },
+    {
+      "id": 6,
+	  "type": 3,
+      "title": "Bookstack",
+      "description": "BookStack is a simple, self-hosted, easy-to-use platform for organising and storing information.",
+      "note": "TEMPLATE INFO:(AddedDate:20221231 - DockerVersion:22.11.1) Default login is admin@admin.com with a password of password.",      
+      "categories": ["Wiki"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/bookstack.png",
+      "repository": {
+        "stackfile": "stacks/bookstack.yml",
+        "url": "https://github.com/marzel1/portainer-templates"
+      },
+      "env": [
+        {
+          "label": "DATABASE_NAME",
+          "name": "DATABASE_NAME"
+        },
+        {
+          "label": "DATABASE_USER",
+          "name": "DATABASE_USER"
+        },
+        {
+          "label": "DATABASE_PASSWORD",
+          "name": "DATABASE_PASSWORD"
+        },
+        {
+          "label": "MYSQL_ROOT_PASSWORD",
+          "name": "MYSQL_ROOT_PASSWORD"
+        },
+        {
+          "label": "PORT",
+          "name": "PORT"
+        },
+        {
+          "label": "BOOKSTACK_URL",
+          "name": "BOOKSTACK_URL"
+        },
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "id": 7,
+	  "type": 1,
+      "title": "Code Server",
+      "description": "Code-Server is VS Code running on a remote server, accessible through the browser.",
+      "note": "TEMPLATE INFO:(AddedDate:20221231 - DockerVersion:4.9.1)",
+      "categories": ["Tools"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/codeserver-light.png",
+      "image": "linuxserver/code-server:latest",
+      "name": ["code-server"],
+      "ports": ["8443/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/code-server/appdata/config",
+          "container": "/config"
+        }
+      ],
+      "env":[
+        {
+          "name": "SUDO_PASSWORD",
+          "label": "SUDO Password",
+          "description": "If this optional variable is set, user will have sudo access in the code-server terminal with the specified password."
+        },
+        {
+          "name": "PASSWORD",
+          "label": "Web GUI Password",
+          "description": "Optional web gui password, if not provided, there will be no auth."
+        },
+        {
+          "name": "PROXY_DOMAIN",
+          "label": "Proxy Domain",
+          "description": "If this optional variable is set, this domain will be proxied for subdomain proxying."
+        },
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]      
+    },
+    {
+      "id": 8,
+	  "type": 1,
+      "title": "Dashy",
+      "description": "The Ultimate Homepage for your Homelab",
+      "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:2.1.1) Requires a conf.yml file in order to work. Documentation is available <a href='https://github.com/Lissy93/dashy/blob/master/docs/configuring.md'>here</a>.",
+      "categories": ["Dashboard"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/dashy.png",
+      "image": "lissy93/dashy:latest",
+      "name": ["dashy"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/dashy/appdata/public/conf.yml",
+          "container": "/app/public/conf.yml"
+        }
+      ]
+    },
+    {
+      "id": 9,
+	  "type": 1,
+      "title": "DB Backup",
+      "description": "Backup Multiple DB Servers (Influx, Maria/Mysql/Mssql/Mongo/Postgres/Redis/Rethink) based on Alpine",
+      "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:3.7.3)",
+      "categories": ["Database", "Backup"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/sqlitebrowser.png",
+      "image": "tiredofit/db-backup:latest",
+      "name": ["db-backup"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/db-backup/appdata/backup",
+          "container": "/backup"
+        }
+      ],
+      "env":[
+        {
+          "name": "DB_TYPE",
+          "label": "Database Type",
+          "description": "Type of DB Server to backup",
+          "select": [
+            {
+              "text": "MariaDB",
+              "value": "mariadb",
+              "default": true
+            },
+            {
+              "text": "PostgresDB",
+              "value": "pgsql"
+            },
+            {
+              "text": "Redis",
+              "value": "redis"
+            },
+            {
+              "text": "MySQL",
+              "value": "mysql"
+            },
+            {
+              "text": "InfluxDB",
+              "value": "influx"
+            },
+            {
+              "text": "MongoDB",
+              "value": "mongo"
+            },
+            {
+              "text": "CouchDB",
+              "value": "couch"
+            }
+          ]
+        },
+        {
+          "name": "DB_HOST",
+          "label": "Database Host",
+          "description": "Server Hostname",
+          "default": "mariadb"
+        },
+        {
+          "name": "DB_NAME",
+          "label": "Database Name",
+          "description": "Schema Name (use 'all' if you want to backup all Databases).",
+          "default": "all"
+        },
+        {
+          "name": "DB_USER",
+          "label": "Database Username",
+          "description": "Username for the Database (use 'root' to backup all MySQL of them)."
+        },
+        {
+          "name": "DB_PASS",
+          "label": "Database Password",
+          "description": "Password for the Database (optional if DB doesn't require it)"
+        },
+        {
+          "name": "DB_PORT",
+          "label": "Database Port",
+          "description": "(optional) Set port to connect to DB_HOST. Defaults are provided"
+        },
+        {
+          "name": "DB_DUMP_FREQ",
+          "label": "Database dump Frequency",
+          "description": "How often to do a dump, in minutes. Defaults to 1440 minutes, or once per day.",
+          "default": "1440"
+        },
+        {
+          "name": "DB_DUMP_BEGIN",
+          "label": "Database dump begin Time",
+          "description": "What time to do the first dump. Defaults to immediate. Absolute HHMM, e.g. 2330 or 0415",
+          "default": "0100"
+        },
+        {
+          "name": "DB_CLEANUP_TIME",
+          "label": "Database cleanup Time",
+          "description": "Value in minutes to delete old backups (only fired when dump freqency fires). 1440 would delete anything above 1 day old. You don't need to set this variable if you want to hold onto everything. (10080 = 1 Week) ",
+          "default": "10080"
+        },
+        {
+          "name": "COMPRESSION",
+          "label": "Compression",
+          "description": "Compression used to compress the backup file.",
+          "select": [
+            {
+              "text": "Gzip",
+              "value": "GZ",
+              "default": true
+            },
+            {
+              "text": "Bzip2",
+              "value": "BZ"
+            },
+            {
+              "text": "XZip",
+              "value": "XZ"
+            },
+            {
+              "text": "ZSTD",
+              "value": "ZSTD"
+            },
+            {
+              "text": "None",
+              "value": "NONE"
+            }
+          ]
+        },
+        {
+          "name": "PARALLEL_COMPRESSION",
+          "label": "Parallel Compression",
+          "description": "Use multiple cores when compressing backups.",
+          "select": [
+            {
+              "text": "TRUE",
+              "value": "TRUE",
+              "default": true
+            },
+            {
+              "text": "FALSE",
+              "value": "FALSE"
+            }
+          ]
+        },
+        {
+          "name": "MD5",
+          "label": "MD5",
+          "description": "Generate MD5 Sum in Directory.",
+          "select": [
+            {
+              "text": "TRUE",
+              "value": "TRUE",
+              "default": true
+            },
+            {
+              "text": "FALSE",
+              "value": "FALSE"
+            }
+          ]
+        },
+        {
+          "name": "SPLIT_DB",
+          "label": "Split Databases",
+          "description": "If using root as username and multiple DBs on system, set to TRUE to create Seperate DB Backups instead of all in one.",
+          "select": [
+            {
+              "text": "FALSE",
+              "value": "FALSE",
+              "default": true
+            },
+            {
+              "text": "TRUE",
+              "value": "TRUE"
+            }
+          ]
+        },
+        {
+          "name": "CONTAINER_ENABLE_MONITORING",
+          "label": "Container Monitoring",
+          "description": "If you want to use Monitoring with Zabbix, set it to true.",
+          "select": [
+            {
+              "text": "TRUE",
+              "value": "TRUE"              
+            },
+            {
+              "text": "FALSE",
+              "value": "FALSE",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "DEBUG_MODE",
+          "label": "Debug Mode",
+          "description": "If set to true, print copious shell script messages to the container log. Otherwise only basic messages are printed.",
+          "select": [
+            {
+              "text": "FALSE",
+              "value": "FALSE",
+              "default": true
+            },
+            {
+              "text": "TRUE",
+              "value": "TRUE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10,
+	  "type": 1,
+      "title": "Duplicati",
+      "description": "Free backup software to store encrypted backups online",
+      "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:2.0.6)",
+      "categories": ["Backup"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/duplicati.png",
+      "image": "linuxserver/duplicati:latest",
+      "name": ["duplicati"],
+      "ports": ["8200/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/duplicati/appdata/config",
+          "container": "/config"
+        },
+        {
+          "bind": "/docker",
+          "container": "/mnt/docker"
+        },
+        {
+          "bind": "/docker/duplicati/appdata/backup",
+          "container": "/mnt/backup"
+        }
+      ],
+      "env":[
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "0"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "0"
+        }
+      ]
+    },
+    {
+      "id": 11,
+	  "type": 1,
+      "title": "Elasticsearch",
+      "description": "Elasticsearch is a distributed, RESTful search and analytics engine capable of solving a growing number of use cases.",
+      "note": "TEMPLATE INFO:(AddedDate:20230208 - DockerVersion:8.6.1) Requires at least 4Gb of RAM.", 
+      "categories": ["Database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/elasticsearch.png",
+      "image": "elasticsearch:8.6.1",
+      "name": ["elasticsearch"],
+      "ports": ["9200/tcp"],
+      "restart_policy": "unless-stopped"
+    },
+    {
+      "type": 1,
+      "title": "Emby",
+      "description": "Emby is a media server designed to organize, play, and stream audio and video to a variety of devices.",
+      "note": "TEMPLATE INFO:(AddedDate:20230209 - DockerVersion:4.7.11.0)", 
+      "categories": ["Media"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/emby.png",
+      "image": "emby/embyserver:latest",
+      "name": ["emby"],
+      "network": "host",
+      "ports": ["8096/tcp","8920/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/emby/appdata/config",
+          "container": "/config"
+        },
+        {
+          "bind": "/docker/emby/appdata/media",
+          "container": "/mnt/media"
+        }
+      ],
+      "env":[
+        {
+          "name": "UID",
+          "label": "UID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "GID",
+          "label": "GID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "id": 12,
+	  "type": 1,
+      "title": "Flame",
+      "description": "",
+      "note": "TEMPLATE INFO:(AddedDate:20230215 - DockerVersion:2.3.0)",
+      "categories": ["Dashboard"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/flame.png",
+      "image": "pawelmalak/flame:latest",
+      "name": ["flame"],
+      "ports": ["5005/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/flame/appdata/data",
+          "container": "/app/data"
+        },
+        {
+          "bind": "/var/run/docker.sock",
+          "container": "/var/run/docker.sock"
+        }
+      ],
+      "env":[
+        {
+          "name": "PASSWORD",
+          "label": "Password",
+          "description": "Flame Password"
+        }
+      ]
+    },
+    {
+      "id": 13,
+	  "type": 1,
+      "title": "Gitea",
+      "description": "Gitea: Git with a cup of tea - A painless self-hosted Git service.",
+      "note": "TEMPLATE INFO:(AddedDate:20230102 - DockerVersion:1.18.0)",
+      "categories": ["Git"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/gitea.png",
+      "image": "gitea/gitea:latest",
+      "name": ["gitea"],
+      "ports": ["22/tcp","3000/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/gitea/appdata/data",
+          "container": "/data"
+        }
+      ]
+    },
+    {
+      "id": 14,
+	  "type": 1,
+      "title": "Gitlab",
+      "description": "From planning to production, GitLab brings teams together to shorten cycle times, reduce costs, strengthen security, and increase developer productivity.",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:15.7.0)",
+      "categories": ["Git"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/gitlab.png",
+      "image": "gitlab/gitlab-ce:latest",
+      "name": ["gitlab"],
+      "ports": ["22/tcp","9080/tcp","9443/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/gitlab/appdata/config",
+          "container": "/etc/gitlab"
+        },
+        {
+          "bind": "/docker/gitlab/appdata/data",
+          "container": "/var/opt/gitlab"
+        },
+        {
+          "bind": "/docker/gitlab/appdata/log",
+          "container": "/var/log/gitlab"
+        }
+      ]
+    },
+    {
+      "id": 15,
+	  "type": 1,
+      "title": "Grafana",
+      "description": "Operational dashboards for your data here, there, or anywhere",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:9.3.2) Grafana runs under the grafana user/472, make sure the appdata folder has the correct permissions.",
+      "categories": ["Monitoring"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/grafana.png",
+      "image": "grafana/grafana:latest",
+      "name": ["grafana"],
+      "ports": ["3000/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/grafana/appdata/grafana",
+          "container": "/var/lib/grafana"
+        }
+      ],
+      "env":[
+        {
+          "name": "SECURITY_ADMIN_PASSWORD",
+          "label": "Admin Password",
+          "description": "Password used by the Admin user."
+        },
+        {
+          "name": "SERVER_ROOT_URL",
+          "label": "Server URL",
+          "description": "Server URL"
+        }
+      ]
+    },
+    {
+      "id": 16,
+	  "type": 1,
+      "title": "Guacd",
+      "description": "Guacd is the native server-side proxy used by the Apache Guacamole web application. If you wish to deploy Guacamole, or an application using the Guacamole core APIs, you will need a copy of guacd running.",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:1.4.0)",
+      "categories": ["Remote"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/guacamole.png",
+      "image": "linuxserver/guacd:latest",
+      "name": ["guacd"],
+      "restart_policy": "unless-stopped",
+      "env":[
+        {
+          "name": "GUACD_LOG_LEVEL",
+          "label": "Log Level",
+          "description": "Set the Log Level",
+          "select": [
+            {
+              "text": "info",
+              "value": "info",
+              "default": true
+            },
+            {
+              "text": "debug",
+              "value": "debug"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 17,
+	  "type": 1,
+      "title": "Guacamole",
+      "description": "Apache Guacamole is a clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH.",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:1.4.0)",
+      "categories": ["Remote"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/guacamole.png",
+      "image": "guacamole/guacamole:latest",
+      "name": ["guacamole"],
+      "ports": ["8080/tcp"],
+      "restart_policy": "unless-stopped",
+      "env":[
+        {
+          "name": "GUACD_HOSTNAME",
+          "label": "Guacd Hostname",
+          "description": "Hostname of the Guacd Service."
+        },
+        {
+          "name": "GUACD_POST",
+          "label": "Guacd Port",
+          "description": "Port of the Guacd Service."
+        },
+        {
+          "name": "MYSQL_HOSTNAME",
+          "label": "MySQL Hostname",
+          "description": "Hostname of the MySQL/MariaDB Server"
+        },
+        {
+          "name": "MYSQL_PORT",
+          "label": "MySQL Port",
+          "description": "Port of the MySQL/MariaDB Server."
+        },
+        {
+          "name": "MYSQL_DATABASE",
+          "label": "MySQL Database Name",
+          "description": "Name of the Database."
+        },
+        {
+          "name": "MYSQL_USER",
+          "label": "MySQL User",
+          "description": "Username for the Database."
+        },
+        {
+          "name": "MYSQL_PASSWORD",
+          "label": "MySQL Password",
+          "description": "Password for the Database (optional if DB doesn't require it)"
+        }
+      ]
+    },
+    {
+      "id": 18,
+	  "type": 1,
+      "title": "Heimdall",
+      "description": "Heimdall Application Dashboard is a dashboard for all your web applications.",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:2.5.4)",
+      "categories": ["Dashboard"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/heimdall-light.png",
+      "image": "linuxserver/heimdall:latest",
+      "name": ["heimdall"],
+      "ports": ["80/tcp", "443/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/heimdall/appdata/config",
+          "container": "/config"
+        }
+      ],
+      "env":[
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "id": 19,
+	  "type": 1,
+      "title": "Homarr",
+      "description": "",
+      "note": "TEMPLATE INFO:(AddedDate:20230215 - DockerVersion:0.11.4)",
+      "categories": ["Dashboard"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/homarr.png",
+      "image": "ghcr.io/ajnart/homarr:latest",
+      "name": ["homarr"],
+      "ports": ["7575/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/homer/appdata/configs",
+          "container": "/app/data/configs"
+        },
+        {
+          "bind": "/docker/homer/appdata/icons",
+          "container": "/app/public/icons"
+        }
+      ]
+    },
+    {
+      "id": 20,
+	  "type": 1,
+      "title": "Homepage",
+      "description": "A modern (fully static, fast), secure (fully proxied), highly customizable application dashboard with integrations for more than 25 services and translations for over 15 languages. Easily configured via YAML files (or discovery via docker labels).",
+      "note": "TEMPLATE INFO:(AddedDate:20230215 - DockerVersion:0.6.7)",
+      "categories": ["Dashboard"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/homepage.png",
+      "image": "ghcr.io/benphelps/homepage:latest",
+      "name": ["homepage"],
+      "ports": ["3000/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/homepage/appdata/config",
+          "container": "/app/config"
+        },
+        {
+          "bind": "/var/run/docker.sock",
+          "container": "/var/run/docker.sock"
+        }
+      ],
+      "env":[
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "id": 21,
+	  "type": 1,
+      "title": "Homer",
+      "description": "A dead simple static HOMepage for your servER to keep your services on hand, from a simple yaml configuration file.",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:22.11.2) Requires a config file. Documentation is available <a href='https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md'>here</a>.",
+      "categories": ["Dashboard"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/homer.png",
+      "image": "b4bz/homer:latest",
+      "name": ["homer"],
+      "ports": ["8080/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/homer/appdata/assets",
+          "container": "/www/assets"
+        }
+      ]
+    },
+    {
+      "id": 22,
+	  "type": 1,
+      "title": "Jump",
+      "description": "Jump is yet another self-hosted startpage for your server designed to be simple, stylish, fast and secure.",
+      "note": "TEMPLATE INFO:(AddedDate:20230210 - DockerVersion:1.3.0)",
+      "categories": ["Dashboard"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/jump.png",
+      "image": "daledavies/jump:latest",
+      "name": ["jump"],
+      "ports": ["8080/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/jump/appdata/backgrounds",
+          "container": "/backgrounds"
+        },
+        {
+          "bind": "/docker/jump/appdata/favicon",
+          "container": "/favicon"
+        },
+        {
+          "bind": "/docker/jump/appdata/search",
+          "container": "/search"
+        },
+        {
+          "bind": "/docker/jump/appdata/sites",
+          "container": "/sites"
+        }
+      ],
+      "env":[
+        {
+          "name": "SITENAME",
+          "label": "Page Name",
+          "description": "Custom site name."
+        },
+        {
+          "name": "SHOWCLOCK",
+          "label": "Show Clock",
+          "description": "Hide the clock.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "AMPMCLOCK",
+          "label": "Clock Format",
+          "description": "Show 12 hour clock format if true.",
+          "select": [
+            {
+              "text": "12 hour",
+              "value": "true"
+            },
+            {
+              "text": "24 hour",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "SHOWGREETING",
+          "label": "Show Greeting",
+          "description": "Show the label #home instead of a friendly greeting message.",
+          "select": [
+            {
+              "text": "Greeting",
+              "value": "true"
+            },
+            {
+              "text": "Label",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "SHOWSEARCH",
+          "label": "Show Search",
+          "description": "Hide the search button (disable search).",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "ALTLAYOUT",
+          "label": "Alternative Layout",
+          "description": "Display list of sites using an alternative layout.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "BGBLUR",
+          "label": "Background Blur",
+          "description": "Background image blur percentage.",
+          "default": "50"
+        },
+        {
+          "name": "BGBRIGHT",
+          "label": "Background Brightness",
+          "description": "Background image brightness percentage.",
+          "default": "90"
+        },
+        {
+          "name": "CHECKSTATUS",
+          "label": "Status Check",
+          "description": "Disable checking site availability status.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "STATUSCACHE",
+          "label": "Status Cache",
+          "description": "Duration in minutes to cache site availability status",
+          "default": "30"
+        },
+        {
+          "name": "CACHEBYPASS",
+          "label": "Cache Bypass",
+          "description": "Bypass all caches, useful for testing changes.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true",
+              "default": true
+            },
+            {
+              "text": "False",
+              "value": "false"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 23,
+	  "type": 1,
+      "title": "Jellyfin",
+      "description": "Jellyfin is a free and open-source media server and suite of multimedia applications designed to organize, manage, and share digital media files to networked devices.",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:22.11.2)",
+      "categories": ["Media"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/jellyfin.png",
+      "image": "jellyfin/jellyfin:latest",
+      "name": ["jellyfin"],
+      "ports": ["8080/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/jellyfin/appdata/config",
+          "container": "/config"
+        },
+        {
+          "bind": "/docker/jellyfin/appdata/cache",
+          "container": "/cache"
+        },
+        {
+          "bind": "/docker/jellyfin/appdata/media",
+          "container": "/media"
+        },
+        {
+          "bind": "/docker/jellyfin/appdata/media2",
+          "container": "/media2"
+        }
+      ],
+      "env": [
+        {
+          "name": "JELLYFIN_PublishedServerUrl",
+          "label": "Jellyfin URL",
+          "description": "Set the URL for Jellyfin"
+        }
+      ]
+    },
+    {
+      "id": 24,
+	  "type": 1,
+      "title": "MariaDB",
+      "description": "An Enhanced drop in replacement for Mysql",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:2.5.4)",
+      "categories": ["Database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/mariadb.png",
+      "image": "linuxserver/mariadb:latest",
+      "name": ["mariadb"],
+      "ports": ["3306/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/mariadb/appdata/config",
+          "container": "/config"
+        }
+      ],
+      "env": [
+        {
+          "name": "MYSQL_ROOT_PASSWORD",
+          "label": "Root password",
+          "description": "Password used by the root user."
+        },
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "id": 25,
+	  "type": 1,
+      "title": "Nextcloud",
+      "description": "Regain control over your data! Remote collaboration made easy.",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:25.0.2)",
+      "categories": ["Cloud"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/nextcloud.png",
+      "image": "nextcloud",
+      "name": ["nextcloud"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/nextcloud/appdata/html",
+          "container": "/var/www/html"
+        },
+        {
+          "bind": "/docker/nextcloud/appdata/config",
+          "container": "/var/www/html/config"
+        },
+        {
+          "bind": "/docker/nextcloud/appdata/data",
+          "container": "/var/www/html/data"
+        },
+        {
+          "bind": "/docker/nextcloud/appdata/apps",
+          "container": "/var/www/html/custom_apps"
+        }
+      ]
+    },
+    {
+      "id": 26,
+	  "type": 1,
+      "title": "Nginx",
+      "description": "High performance web server",
+      "note": "TEMPLATE INFO:(AddedDate:20221231 - DockerVersion:1.20.2)",
+      "categories": ["Webserver"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/nginx.png",
+      "image": "linuxserver/nginx:latest",
+      "name": ["nginx"],
+      "ports": ["80/tcp", "443/tcp"],
+      "volumes": [
+        {
+          "bind": "/docker/nginx/appdata/config",
+          "container": "/config"
+        },
+        {
+          "bind": "/docker/nginx/appdata/data",
+          "container": "/usr/share/nginx/html"
+        }
+      ],
+      "env":[
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "id": 27,
+	  "type": 1,
+      "title": "Nginx Proxy Manager",
+      "description": "Expose your services easily and securely.",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:2.9.19) Default Admin User: admin@example.com Default Password: changeme",
+      "categories": ["Proxy"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/nginxproxymanager.png",
+      "image": "jc21/nginx-proxy-manager:latest",
+      "name": ["nginxproxymanager"],
+      "ports": ["81/tcp","80/tcp","443/tcp","3000/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/nginxproxymanager/appdata/data",
+          "container": "/data"
+        },
+        {
+          "bind": "/docker/nginxproxymanager/appdata/letsencrypt",
+          "container": "/etc/letsencrypt"
+        },
+        {
+          "bind": "/docker/nginxproxymanager/appdata/log",
+          "container": "/var/log"
+        },
+        {
+          "bind": "/docker/nginxproxymanager/appdata/logs",
+          "container": "/data/var/logs"
+        }
+      ]
+    },
+    {
+      "id": 28,
+	  "type": 1,
+      "title": "Organizr",
+      "description": "",
+      "note": "TEMPLATE INFO:(AddedDate:20230215 - DockerVersion:2.9.19)",
+      "categories": ["Dashboard"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/organizr.png",
+      "image": "organizr/organizr:latest",
+      "name": ["organizr"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/organizr/appdata/config",
+          "container": "/config"
+        }
+      ]
+    },
+    {
+      "id": 29,
+	  type": 1,
+      "title": "pgAdmin 4",
+      "description": "pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL, the most advanced Open Source database in the world.",
+      "note": "TEMPLATE INFO:(AddedDate:20230111 - DockerVersion:6.18) pgAdmin runs as the pgadmin user (UID: 5050) in the pgadmin group (GID: 5050) in the container. You must ensure that all files are readable, and where necessary (e.g. the working/session directory) writeable for this user on the host machine.",
+      "categories": ["Database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/postgres.png",
+      "image": "dpage/pgadmin4:latest",
+      "name": ["pgadmin4"],
+      "ports": ["80/tcp","443/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/pgadmin4/appdata/config",
+          "container": "/var/lib/pgadmin"
+        }
+      ],
+      "env": [
+        {
+          "name": "PGADMIN_DEFAULT_EMAIL",
+          "label": "Admin Email",
+          "description": "Email Address of the Admin Account."
+        },
+        {
+          "name": "PGADMIN_DEFAULT_PASSWORD",
+          "label": "Admin Password",
+          "description": "Password used by the Admin user."
+        }
+      ]
+    },
+    {
+      "id": 30,
+	  "type": 1,
+      "title": "phpMyAdmin",
+      "description": "A web interface for MySQL and MariaDB.",
+      "note": "TEMPLATE INFO:(AddedDate:20221231 - DockerVersion:5.2.0)",
+      "categories": ["Database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/phpmyadmin.png",
+      "image": "linuxserver/phpmyadmin:latest",
+      "name": ["phpmyadmin"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/phpmyadmin/appdata/config",
+          "container": "/config"
+        }
+      ],
+      "env": [
+        {
+          "name": "PMA_ARBITRARY",
+          "label": "Server Connections",
+          "description": "Allowed Server connections (One Server or Any Server).",
+          "select": [
+            {
+              "text": "Any Server",
+              "value": "1"
+            },
+            {
+              "text": "One Server",
+              "value": "0",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "PMA_HOST",
+          "label": "MySQL Host",
+          "description": "IP Address of the MySQL/MariaDB Server"
+        },
+        {
+          "name": "PMA_PORT",
+          "label": "MySQL Port",
+          "description": "Port of the MySQL/MariaDB Server"
+        },
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "id": 31,
+	  "type": 1,
+      "title": "Pi-Hole",
+      "description": "The Pi-hole is a DNS sinkhole that protects your devices from unwanted content without installing any client-side software.",
+      "note": "TEMPLATE INFO:(AddedDate:20230209 - DockerVersion:2023.01.10) Default URL is: http://pi.hole/admin",
+      "categories": ["Ad-Blocker"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/pihole.png",
+      "image": "pihole/pihole:latest",
+      "name": ["pihole"],
+      "ports": ["53/tcp","53/udp","67/udp","80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/pihole/appdata/pihole",
+          "container": "/etc/pihole"
+        },
+        {
+          "bind": "/docker/pihole/appdata/dnsmasq.d",
+          "container": "/etc/dnsmasq.d"
+        }
+      ],
+      "env": [
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "WEBPASSWORD",
+          "label": "Password",
+          "description": "Initial Admin password."
+        }
+      ]
+    },
+    {
+      "id": 32,
+	  "type": 1,
+      "title": "Plex Media Server",
+      "description": "Watch anytime, anywhere with the Plex app.",
+      "note": "TEMPLATE INFO:(AddedDate:20230103 - DockerVersion:1.30.0)",
+      "categories": ["Media"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/plex.png",
+      "image": "plexinc/pms-docker:latest",
+      "name": ["plex"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/plex/appdata/config",
+          "container": " /config"
+        },
+        {
+          "bind": "/docker/plex/appdata/transcode",
+          "container": "/transcode"
+        },
+        {
+          "bind": "/docker/plex/appdata/movies",
+          "container": "/movies"
+        },
+        {
+          "bind": "/docker/plex/appdata/tv",
+          "container": "/tv"
+        },
+        {
+          "bind": "/docker/plex/appdata/music",
+          "container": "/music"
+        }
+      ],
+      "env": [
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PLEX_CLAIM",
+          "label": "Plex Claim",
+          "description": "Specify a Plex Claim to use"
+        },
+        {
+          "name": "VERSION",
+          "label": "Version",
+          "description": "Docker Version you want to use.",
+          "default": "latest"
+        },
+        {
+          "name": "PLEX_UID",
+          "label": "PUID",
+          "description": "User ID to run as",
+          "default": "1000"
+        },
+        {
+          "name": "PLEX_GID",
+          "label": "PGID",
+          "description": "Group ID to run as",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "id": 33,
+	  "type": 1,
+      "title": "Portainer",
+      "description": "Deploy, configure, troubleshoot and secure containers in minutes on Kubernetes, Docker, Swarm and Nomad in any data center, cloud, network edge or IIOT device.",
+      "note": "TEMPLATE INFO:(AddedDate:20230210 - DockerVersion:2.17.0)",
+      "categories": ["Docker"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/portainer.png",
+      "image": "portainer/portainer-ce:latest",
+      "name": ["portainer"],
+      "ports": ["8000/tcp","9443/tcp"],
+      "restart_policy": "always",
+      "volumes": [
+        {
+          "bind": "/docker/portainer/appdata/data",
+          "container": "/data"
+        },
+        {
+          "bind": "/var/run/docker.sock",
+          "container": "/var/run/docker.sock"
+        }
+      ]
+    },
+    {
+      "id": 34,
+	  "type": 1,
+      "title": "Portainer Templates",
+      "description": "Host your own Portainer Templates",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.0) Requires a config file. Documentation is available <a href='https://docs.portainer.io/advanced/app-templates/build'>here</a>.",
+      "categories": ["Docker"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/portainer.png",
+      "image": "portainer/templates:latest",
+      "name": ["portainer-templates"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/portainer/appdata/templates.json",
+          "container": "/usr/share/nginx/html/templates.json"
+        }
+      ]
+    },
+    {
+      "id": 35,
+	  "type": 1,
+      "title": "Postgres 15.1",
+      "description": "The PostgreSQL object-relational database system provides reliability and data integrity.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:3.17)",
+      "categories": ["Database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/postgres.png",
+      "image": "postgres:15.1-alpine",
+      "name": ["postgres15.1"],
+      "ports": ["5432/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/postgres15.1/appdata/data",
+          "container": "/var/lib/postgresql/data"
+        }
+      ],
+      "env": [
+        {
+          "name": "POSTGRES_USER",
+          "label": "User",
+          "description": "Initial superuser name."
+        },
+        {
+          "name": "POSTGRES_PASSWORD",
+          "label": "Password",
+          "description": "Initial superuser password."
+        }
+      ]
+    },
+    {
+      "id": 36,
+	  "type": 1,
+      "title": "Postgres 14.6",
+      "description": "The PostgreSQL object-relational database system provides reliability and data integrity.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:3.17)",
+      "categories": ["Database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/postgres.png",
+      "image": "postgres:14.6-alpine",
+      "name": ["postgres14.6"],
+      "ports": ["5432/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/postgres14.6/appdata/data",
+          "container": "/var/lib/postgresql/data"
+        }
+      ],
+      "env": [
+        {
+          "name": "POSTGRES_USER",
+          "label": "User",
+          "description": "Initial superuser name."
+        },
+        {
+          "name": "POSTGRES_PASSWORD",
+          "label": "Password",
+          "description": "Initial superuser password."
+        }
+      ]
+    },
+    {
+      "id": 37,
+	  "type": 1,
+      "title": "Postgres 13.9",
+      "description": "The PostgreSQL object-relational database system provides reliability and data integrity.",
+      "note": "TEMPLATE INFO:(AddedDate:20230111 - DockerVersion:3.17)",
+      "categories": ["Database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/postgres.png",
+      "image": "postgres:13.9-alpine",
+      "name": ["postgres13.9"],
+      "ports": ["5432/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/postgres13.9/appdata/data",
+          "container": "/var/lib/postgresql/data"
+        }
+      ],
+      "env": [
+        {
+          "name": "POSTGRES_USER",
+          "label": "User",
+          "description": "Initial superuser name."
+        },
+        {
+          "name": "POSTGRES_PASSWORD",
+          "label": "Password",
+          "description": "Initial superuser password."
+        }
+      ]
+    },
+    {
+      "id": 38,
+	  "type": 1,
+      "title": "Postgres 12.13",
+      "description": "The PostgreSQL object-relational database system provides reliability and data integrity.",
+      "note": "TEMPLATE INFO:(AddedDate:20230111 - DockerVersion:3.17)",
+      "categories": ["Database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/postgres.png",
+      "image": "postgres:12.13-alpine",
+      "name": ["postgres12.13"],
+      "ports": ["5432/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/postgres12.13/appdata/data",
+          "container": "/var/lib/postgresql/data"
+        }
+      ],
+      "env": [
+        {
+          "name": "POSTGRES_USER",
+          "label": "User",
+          "description": "Initial superuser name."
+        },
+        {
+          "name": "POSTGRES_PASSWORD",
+          "label": "Password",
+          "description": "Initial superuser password."
+        }
+      ]
+    },
+    {
+      "id": 39,
+	  "type": 1,
+      "title": "Prometheus",
+      "description": "Prometheus is a systems and service monitoring system. It collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts if some condition is observed to be true.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:2.41.0) Prometheus runs as the UID: 65534 in the GID: 65534 in the container. You must ensure that all files are readable, and where necessary (e.g. the working/session directory) writeable for this user on the host machine.",
+      "categories": ["Monitoring"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/prometheus.png",
+      "image": "prom/prometheus:latest",
+      "name": ["prometheus"],
+      "ports": ["9090/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/prometheus/appdata/data",
+          "container": "/prometheus"
+        },
+        {
+          "bind": "/docker/prometheus/appdata/config",
+          "container": "/etc/prometheus/"
+        }
+      ]
+    },
+    {
+      "id": 40,
+	  "type": 1,
+      "title": "Redis",
+      "description": "Redis is an open source key-value store that functions as a data structure server.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:7.0.7)",
+      "categories": ["Database"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/redis.png",
+      "image": "redis:latest",
+      "name": ["redis"],
+      "ports": ["6379/tcp"],
+      "restart_policy": "unless-stopped"
+    },
+    {
+      "id": 41,
+	  "type": 1,
+      "title": "Remotely",
+      "description": "A remote control and remote scripting solution, built with .NET 6, Blazor, and SignalR Core.",
+      "note": "TEMPLATE INFO:(AddedDate:20230210 - DockerVersion:1375) For first run, create your account by clicking the Register button on the main page.This account will be both the server admin and organization admin.",
+      "categories": ["Remote"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/remotely.png",
+      "image": "immybot/remotely:latest",
+      "name": ["remotely"],
+      "ports": ["5000/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/remotely/appdata/data",
+          "container": "/remotely-data"
+        }
+      ]
+    },
+    {
+      "id": 42,
+	  "type": 1,
+      "title": "Roundcube",
+      "description": "Roundcube webmail is a browser-based multilingual IMAP client with an application-like user interface.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.6.0)",
+      "categories": ["Tools"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/roundcube.png",
+      "image": "roundcube/roundcubemail:latest",
+      "name": ["roundcube"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/roundcube/appdata/data",
+          "container": "/var/www/html"
+        },
+        {
+          "bind": "/docker/roundcube/appdata/config",
+          "container": "/var/roundcube/config"
+        },
+        {
+          "bind": "/docker/roundcube/appdata/db",
+          "container": "/var/roundcube/db"
+        },
+        {
+          "bind": "/docker/roundcube/appdata/temp",
+          "container": "/tmp/roundcube-temp"
+        }
+      ],
+      "env": [
+        {
+          "name": "ROUNDCUBEMAIL_DEFAULT_HOST",
+          "label": "IMAP Server",
+          "description": "Hostname of the IMAP server to connect to. For encypted connections, prefix the host with tls:// (STARTTLS) or ssl:// (SSL/TLS)."
+        },
+        {
+          "name": "ROUNDCUBEMAIL_DEFAULT_PORT",
+          "label": "IMAP Server Port",
+          "description": "IMAP port number"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_SMTP_SERVER",
+          "label": "SMTP Server",
+          "description": "Hostname of the SMTP server to send mails. For encypted connections, prefix the host with tls:// (STARTTLS) or ssl:// (SSL/TLS)."
+        },
+        {
+          "name": "ROUNDCUBEMAIL_SMTP_PORT",
+          "label": "SMTP Server Port",
+          "description": "SMTP port number"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_PLUGINS",
+          "label": "Roundcube Plugins",
+          "description": "List of built-in plugins to activate.",
+          "default": "archive,zipdownload"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_UPLOAD_MAX_FILESIZE",
+          "label": "Upload Limit",
+          "description": "File upload size limit.",
+          "default": "5M"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_SPELLCHECK_URI",
+          "label": "Spellcheck URL",
+          "description": "Fully qualified URL to a Google XML spell check API like google-spell-pspell"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_ASPELL_DICTS",
+          "label": "Spellcheck dictionaries",
+          "description": "List of aspell dictionaries to install for spell checking (comma-separated, e.g. de,fr,pl).",
+          "default": "en,de"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_DB_TYPE",
+          "label": "Database Type",
+          "description": "Database provider; currently supported: mysql, pgsql, sqlite",
+          "select": [
+            {
+              "text": "SQLite",
+              "value": "sqlite"
+            },
+            {
+              "text": "MySQL",
+              "value": "mysql",
+              "default": true
+            },
+            {
+              "text": "Postgres",
+              "value": "pgsql"
+            }
+          ]
+        },
+        {
+          "name": "ROUNDCUBEMAIL_DB_HOST",
+          "label": "Database Host",
+          "description": "Host (or Docker instance) name of the database service; defaults to mysql or postgres depending on linked containers.",
+          "default": "mariadb"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_DB_PORT",
+          "label": "Database Port",
+          "description": "Port number of the database service; defaults to 3306 or 5432 depending on linked containers.",
+          "default": "3306"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_DB_USER",
+          "label": "Database User",
+          "description": "The database username for Roundcube; defaults to root on mysql"
+        },
+        {
+          "name": "ROUNDCUBEMAIL_DB_PASSWORD",
+          "label": "Database Password",
+          "description": "The password for the database connection."
+        },
+        {
+          "name": "ROUNDCUBEMAIL_DB_NAME",
+          "label": "Database Name",
+          "description": "The database name for Roundcube to use; defaults to roundcubemail"
+        }
+      ]
+    },
+    {
+      "id": 43,
+	  "type": 1,
+      "title": "Speedtest Tracker",
+      "description": "This program runs a speedtest check every hour and graphs the results. The back-end is written in Laravel and the front-end uses React. It uses the speedtest-cli package to get the data and uses Chart.js to plot the results.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.12.0) Default User: admin@admin.com Default Password: password",
+      "categories": ["Monitoring"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/speedtest-tracker.png",
+      "image": "henrywhitaker3/speedtest-tracker:latest",
+      "name": ["speedtest-tracker"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/speedtest-tracker/appdata/config",
+          "container": "/config"
+        }
+      ],
+      "env":[
+        {
+          "name": "AUTH",
+          "label": "Authentication",
+          "description": "Optional. Set to 'true' to enable authentication for the app",
+          "select": [
+            {
+              "text": "True",
+              "value": "true",
+              "default": true
+            },
+            {
+              "text": "False",
+              "value": "false"
+            }
+          ]
+        },
+        {
+          "name": "SLACK_WEBHOOK",
+          "label": "Slack/Discord Webhook",
+          "description": "Optional. Put a slack webhook here to get slack notifications when a speedtest is run. To use discord webhooks, just append /slack to the end of your discord webhook URL"
+        },
+        {
+          "name": "OOKLA_EULA_GDPR",
+          "label": "Ookla Eula",
+          "description": "Set to 'true' to accept the Ookla EULA and privacy agreement. If this is not set, the container will not start",
+          "select": [
+            {
+              "text": "True",
+              "value": "true",
+              "default": true
+            },
+            {
+              "text": "False",
+              "value": "false"
+            }
+          ]
+        },
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "Used User ID",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Used Group ID",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "id": 44,
+	  "type": 1,
+      "title": "Speedtest Tracker 2",
+      "description": "Speedtest Tracker is a self-hosted internet performance tracking application that runs speedtest checks against Ookla's Speedtest service.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:0.9.2) Default User: admin@example.com Default Password: password",
+      "categories": ["Monitoring"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/speedtest-tracker.png",
+      "image": "ghcr.io/alexjustesen/speedtest-tracker:latest",
+      "name": ["speedtest-tracker2"],
+      "ports": ["80/tcp", "443/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/speedtest-tracker2/appdata/config",
+          "container": "/config"
+        }
+      ],
+      "env":[
+        {
+          "name": "DB_CONNECTION",
+          "label": "Database Type",
+          "description": "Database provider; currently supported: mysql, pgsql",
+          "select": [
+            {
+              "text": "MariaDB",
+              "value": "mysql",
+              "default": true
+            },
+            {
+              "text": "Postgres",
+              "value": "pgsql"
+            }
+          ]
+        },
+        {
+          "name": "DB_HOST",
+          "label": "Database Host",
+          "description": "The database host"
+        },
+        {
+          "name": "DB_PORT",
+          "label": "Database Port",
+          "description": "Port number of the database service; defaults to 3306 or 5432 depending on linked containers."
+        },
+        {
+          "name": "DB_DATABASE",
+          "label": "Database Name",
+          "description": "The database name for Speedtest-Tracker to use.",
+          "default": "speedtestdb"
+        },
+        {
+          "name": "DB_USERNAME",
+          "label": "Database User",
+          "description": "The database username for Speedtest-tracker; defaults to root on mysql.",
+          "default": "root"
+        },
+        {
+          "name": "DB_PASSWORD",
+          "label": "Database Password",
+          "description": "Password for the Database (optional if DB doesn't require it)",
+          "default": "password"
+        },
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "Used User ID",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Used Group ID",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "id": 45,
+	  "type": 1,
+      "title": "Theme Park",
+      "description": "A collection of themes/skins for your favorite apps!",
+      "note": "TEMPLATE INFO:(AddedDate:20230124 - DockerVersion:1.13.3)",
+      "categories": ["Other"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/theme-park.png",
+      "image": "ghcr.io/gilbn/theme.park",
+      "name": ["theme-park"],
+      "ports": ["80/tcp", "443/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/theme-park/appdata/config",
+          "container": "/config"
+        }
+      ],
+      "env":[
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        },
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "Used User ID",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Used Group ID",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "id": 46,
+	  "type": 1,
+      "title": "Traefik",
+      "description": "The Cloud-Native application proxy",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:3.0)",
+      "categories": ["Proxy"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/traefik.png",
+      "image": "traefik:latest",
+      "name": ["traefik"],
+      "ports": ["80/tcp", "443/tcp", "8080/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/traefik/appdata/config",
+          "container": "/etc/traefik/"
+        },
+        {
+          "bind": "/docker/traefik/appdata/ssl-certs",
+          "container": "/ssl-certs"
+        },
+        {
+          "bind": "/var/run/docker.sock",
+          "container": "/var/run/docker.sock"
+        }
+      ],
+      "env":[
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "description": "Used User ID",
+          "default": "1000"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "description": "Used Group ID",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "id": 47,
+	  "type": 1,
+      "title": "Trilium Notes",
+      "description": "Trilium Notes is a hierarchical note taking application with focus on building large personal knowledge bases.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:0.58)",
+      "categories": ["Tools"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/trilium.png",
+      "image": "zadam/trilium:latest",
+      "name": ["trilium"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/trilium/appdata/data",
+          "container": "/home/node/trilium-data"
+        }
+      ],
+      "env":[
+        {
+          "name": "USER_UID",
+          "label": "PUID",
+          "description": "Used User ID",
+          "default": "1000"
+        },
+        {
+          "name": "USER_GID",
+          "label": "PGID",
+          "description": "Used Group ID",
+          "default": "1000"
+        }
+      ]
+    },
+    {
+      "id": 48,
+	  "type": 1,
+      "title": "Teleport",
+      "description": "Identity-Native Infrastructure Access",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:???)",
+      "categories": ["Authentication", "Proxy"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/teleport.png",
+      "image": "teleport:latest",
+      "name": ["teleport"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/teleport/appdata/data",
+          "container": "/data"
+        }
+      ]
+    },
+    {
+      "id": 49,
+	  "type": 1,
+      "title": "Vaultwarden",
+      "description": "Vaultwarden (formerly bitwarden_rs) is a Bitwarden server API implementation written in Rust compatible with upstream Bitwarden clients, perfect for self-hosted deployment where running the official resource-heavy service might not be ideal.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.27.0) To start the initial setup, navigate to http://<your server>/admin/ and login with the ADMIN_TOKEN. After you have configured everything, set the DISABLE_ADMIN_TOKEN environment variable to true so that no one else can access the admin page.",
+      "categories": ["Password"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/bitwarden.png",
+      "image": "vaultwarden/server:latest",
+      "name": ["vaultwarden"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/vaultwarden/appdata/data",
+          "container": "/data"
+        }
+      ],
+      "env":[
+        {
+          "name": "SERVER_ADMIN_EMAIL",
+          "label": "Admin Email",
+          "description": "Email Address of the Admin Account.",
+          "default": "admin@account.com"
+        },
+        {
+          "name": "SIGNUPS_ALLOWED",
+          "label": "Signup Allowed",
+          "description": "Set it to True if you want to allow User to signup.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "INVITATIONS_ALLOWED",
+          "label": "Invitation Allowed",
+          "description": "Set it to True if you want to allow User to invate other Users.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "WEBSOCKET_ENABLED",
+          "label": "Websocket Enabled",
+          "description": "Enable the Websocket.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "WEBSOCKET_PORT",
+          "label": "Websocket Port",
+          "description": "Set the Port for the Websocket.",
+          "default": "3012"
+        },
+        {
+          "name": "ADMIN_TOKEN",
+          "label": "Admin Token",
+          "description": "Admin Token to configure Admin Settings."
+        },
+        {
+          "name": "DOMAIN",
+          "label": "Proxy Domain",
+          "description": "If this optional variable is set, this domain will be proxied for subdomain proxying.",
+          "default": "http://secure.domain.com"
+        },
+        {
+          "name": "YUBICO_CLIENT_ID",
+          "label": "Yubico Client ID",
+          "description": "Set the Client ID for your Yubico Key."
+        },
+        {
+          "name": "YUBICO_SECRET_KEY",
+          "label": "Yubico Secret Key",
+          "description": "Set the Secret Key for your Yubico Key."
+        },
+        {
+          "name": "DISABLE_ADMIN_TOKEN",
+          "label": "Disable Admin Token",
+          "description": "Set it to True if you want to allow Admin Page access.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "SMTP_HOST",
+          "label": "SMTP Server",
+          "description": "Hostname of the SMTP server to send mails."
+        },
+        {
+          "name": "SMTP_FROM",
+          "label": "SMTP From",
+          "description": "Use Email Address to sent the Mail."
+        },
+        {
+          "name": "SMTP_PORT",
+          "label": "SMTP Server Port",
+          "description": "SMTP port number"
+        },
+        {
+          "name": "SMTP_SECURITY",
+          "label": "SMTP Security",
+          "description": "If SMTP encryption should be used.",
+          "select": [
+            {
+              "text": "force_tls",
+              "value": "force_tls"
+            },
+            {
+              "text": "starttls",
+              "value": "starttls",
+              "default": true
+            },
+            {
+              "text": "off",
+              "value": "off"
+            }
+          ]
+        },
+        {
+          "name": "SMTP_USERNAME",
+          "label": "SMTP Username",
+          "description": "SMTP Username to login to the Server."
+        },
+        {
+          "name": "SMTP_PASSWORD",
+          "label": "SMTP Password",
+          "description": "SMTP Password to login to the Server."
+        }
+      ]
+    },
+    {
+      "id": 50,
+	  "type": 1,
+      "title": "Watchtower",
+      "description": "A container-based solution for automating Docker container base image updates.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.5.1)",
+      "categories": ["Docker"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/watchtower.png",
+      "image": "containrrr/watchtower:latest",
+      "name": ["watchtower"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/var/run/docker.sock",
+          "container": "/var/run/docker.sock"
+        }
+      ],
+      "env":[
+        {
+          "name": "WATCHTOWER_SCHEDULE",
+          "label": "Schedule",
+          "description": "Cron expression in 6 fields (rather than the traditional 5) which defines when and how often to check for new images.",
+          "default": "0 0 0 * * *"
+        },
+        {
+          "name": "WATCHTOWER_CLEANUP",
+          "label": "Image Cleanup",
+          "description": "Removes old images after updating.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "WATCHTOWER_DEBUG",
+          "label": "Debug",
+          "description": "Enable debug mode with verbose logging.",
+          "select": [
+            {
+              "text": "True",
+              "value": "true"
+            },
+            {
+              "text": "False",
+              "value": "false",
+              "default": true
+            }
+          ]
+        },
+        {
+          "name": "TZ",
+          "label": "Time Zone",
+          "description": "Specify a timezone to use",
+          "default": "Europe/Berlin"
+        }
+      ]
+    },
+    {
+      "id": 51,
+	  "type": 1,
+      "title": "Warpgate",
+      "description": "Warpgate is a smart SSH, HTTPS and MySQL bastion host for Linux that doesn't need special client apps.",
+      "note": "TEMPLATE INFO:(AddedDate:20230107 - DockerVersion:1.5.1) Requires a Setup run before starting the Container. Documentation is available <a href='https://github.com/warp-tech/warpgate/wiki/Getting-started-on-Docker'>here</a>.",
+      "categories": ["Remote"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/warpgate.svg",
+      "image": "ghcr.io/warp-tech/warpgate:latest",
+      "name": ["warpgate"],
+      "ports": ["2222/tcp", "8888/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/warpgate/appdata/data",
+          "container": "/data"
+        }
+      ]
+    },
+    {
+      "id": 52,
+	  "type": 1,
+      "title": "Wordpress",
+      "description": "The WordPress rich content management system can utilize plugins, widgets, and themes.",
+      "note": "TEMPLATE INFO:(AddedDate:20230131 - DockerVersion:6.1.1)",
+      "categories": ["Blog"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/wordpress.png",
+      "image": "wordpress:latest",
+      "name": ["wordpress"],
+      "ports": ["80/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/wordpress/appdata/data",
+          "container": "/var/www/html"
+        }
+      ],
+      "env":[
+        {
+          "name": "WORDPRESS_DB_USER",
+          "label": "Database User",
+          "description": "The database user"
+        },
+        {
+          "name": "WORDPRESS_DB_PASSWORD",
+          "label": "Database  Password",
+          "description": "The database password"
+        },
+        {
+          "name": "WORDPRESS_DB_HOST",
+          "label": "Database Host",
+          "description": "The database host"
+        },
+        {
+          "name": "WORDPRESS_DB_NAME",
+          "label": "Database Name",
+          "description": "The database to be used"
+        }
+      ]
+    },
+    {
+      "id": 53,
+	  "type": 1,
+      "title": "Yacht",
+      "description": "Yacht is a container management UI with a focus on templates and 1-click deployments.",
+      "note": "TEMPLATE INFO:(AddedDate:20230209 - DockerVersion:2023-01-12--05)",
+      "categories": ["Docker"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/marzel1/portainer-templates/master/images/yacht.png",
+      "image": "selfhostedpro/yacht:latest",
+      "name": ["yacht"],
+      "ports": ["8000/tcp"],
+      "restart_policy": "unless-stopped",
+      "volumes": [
+        {
+          "bind": "/docker/yacht/appdata/config",
+          "container": "/config"
+        },
+        {
+          "bind": "/var/run/docker.sock",
+          "container": "/var/run/docker.sock"
+        }
+      ]
+    }
+  ]
+}
